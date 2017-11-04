@@ -29,15 +29,14 @@
     String postalcode;
     String phonenumber;
     String errorMessage="";
-
+    out.println("ASDFASDFASDF");
     if(request.getParameter("register")!=null) {
-        fullname = request.getParameter("fname");
-        username = request.getParameter("uname");
+
+        fullname = request.getParameter("name");
+        username = request.getParameter("username");
         email = request.getParameter("email");
-        password = request.getParameter("psw");
-        fulladdress = request.getParameter("address");
-        postalcode = request.getParameter("pc");
-        phonenumber = request.getParameter("p_num");
+        password = request.getParameter("password");
+        phonenumber = request.getParameter("phone_number");
         String USER_AGENT = "Chrome/61.0.3163.100";
         String url = "http://localhost:8001/register";
         URL connection = new URL(url);
@@ -74,11 +73,19 @@
         con.disconnect();
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
-        String status= (String) obj.get("status");
+        String valid= (String) obj.get("valid");
         String token= (String) obj.get("token");
+        String asdf= (String) obj.get("asdf");
+        String qwe= (String) obj.get("qwe");
+        String zxc= (String) obj.get("zxc");
         //long userid = (Long) obj.get("userid");
-        out.println(status);
-        if(status.equals("ok")){
+        out.println(token);
+        out.println(valid);
+        out.println(asdf);
+        out.println(qwe);
+        out.println(zxc);
+        /*
+        if(valid.equals("yes")){
             //errorMessage="SUCCESSS " + token +tes;
             //out.println(errorMessage);
             sesi = request.getSession();
@@ -88,11 +95,10 @@
             sesi.setMaxInactiveInterval(30*60);
             String nextPage = "login.jsp";
             response.sendRedirect(nextPage);
-        }
-        else{
+        } else {
             errorMessage= "USERNAME OR EMAIL NOT VALID";
             out.println(errorMessage);
-        }
+        }*/
     }
 %>
 <!DOCTYPE html>
@@ -141,7 +147,7 @@
 
             <div class="form-signup-submit">
                 <a class="left" href="login.jsp">Already have an account?</a>
-                <input class="button-signup right" type="submit" value="REGISTER">
+                <input class="button-signup right" name="register" type="submit" value="REGISTER">
             </div>
         </form>
 

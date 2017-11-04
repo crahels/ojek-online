@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ServletIndex", urlPatterns = {"/servletIndex"})
 public class IndexServlet extends HttpServlet {
     private HelloWorld service;
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        out.println("OI OI IndexServlet");
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        // Set the response message's MIME type
+        PrintWriter out = response.getWriter();
+
+        out.println("AH");
+        request.getRequestDispatcher("/editProfile.jsp").forward(request,response);
+        response.sendRedirect(request.getContextPath()+"/editprofile");
     }
 
 }

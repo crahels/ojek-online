@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             String email = user.getEmail();
             String password = user.getPassword();
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline",
+            Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline",\
                     "root", "");
             String checkingQuery = "SELECT * FROM user WHERE user_username = '" + username + "' OR user_email = '"
                     + email + "';";
@@ -59,16 +59,16 @@ public class RegisterServlet extends HttpServlet {
                             "values " + "('" + token + "','" + username + "','" + email + "','" + password + "','"
                             + sqlDate + "')";
                     System.out.println("Query: " + q);
-                    String getIDQuery = "SELECT user_id FROM user WHERE user_username = '" + username + "';";
-                    Statement stm = Con.createStatement();
-                    ResultSet rs1 = stm.executeQuery(getIDQuery);
-                    while (rs1.next()) {
-                        int id = rs1.getInt("user_id");
-                        arrayObj.put("id", id);
-                        System.out.println("id : " + id + "\n");
-                    }
                     int i = st.executeUpdate(q);
                     if (i > 0) {
+                        String getIDQuery = "SELECT user_id FROM user WHERE user_username = '" + username + "';";
+                        Statement stm = Con.createStatement();
+                        ResultSet rs1 = stm.executeQuery(getIDQuery);
+                        while (rs1.next()) {
+                            int id = rs1.getInt("user_id");
+                            arrayObj.put("id", id);
+                            System.out.println("id : " + id + "\n");
+                        }
                         System.out.println("Successfully add new user to database");
                         arrayObj.put("tes", "yes");
                     } else {

@@ -3,7 +3,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 
-@WebService(serviceName = "HelloWorld")
+@WebService(serviceName = "HelloWorldService")
 public class HelloWorld {
     @WebMethod(operationName = "sayHelloWorldFrom")
     public String sayHelloWorldFrom(String from) {

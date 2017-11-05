@@ -12,7 +12,12 @@
 <%  application.setAttribute( "currentPage", "order");
     application.setAttribute("currentSubPage","destination");
     HttpSession sesi = request.getSession();
-    String token = "dummy"; /* need to be replaced*/
+    String token;
+    sesi.setAttribute("token","dummy"); /* need to be replaced */
+    token = sesi.getAttribute("token").toString();
+    if (token == null) {
+        response.sendRedirect("login.jsp");
+    }
     if (request.getParameter("submit") != null) {
         String pickingPoint = request.getParameter("picking_point");
         String destination = request.getParameter("destination");
@@ -24,7 +29,7 @@
             sesi.setAttribute("pickingPoint", pickingPoint);
             sesi.setAttribute("destination", destination);
             sesi.setAttribute("preferredDriver", preferredDriver);
-            response.sendRedirect("");
+            response.sendRedirect("order_select_driver.jsp");
         } else {
             response.sendRedirect("login.jsp");
         }

@@ -6,9 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%  application.setAttribute( "currentPage", "order");
-    application.setAttribute("currentSubPage","destination");
-%>
 <html>
 <head>
     <meta charset="UTF-8">

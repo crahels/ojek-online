@@ -1,12 +1,14 @@
 
 package example;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -38,5 +40,52 @@ public interface OrderGojek {
     public boolean checkExpiryTime(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<example.Driver>
+     * @throws IllegalAccessException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getPreferredDrivers", targetNamespace = "http://example/", className = "example.GetPreferredDrivers")
+    @ResponseWrapper(localName = "getPreferredDriversResponse", targetNamespace = "http://example/", className = "example.GetPreferredDriversResponse")
+    @Action(input = "http://example/OrderGojek/getPreferredDriversRequest", output = "http://example/OrderGojek/getPreferredDriversResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/OrderGojek/getPreferredDrivers/Fault/IllegalAccessException")
+    })
+    public List<Driver> getPreferredDrivers(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2)
+        throws IllegalAccessException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getOtherDrivers", targetNamespace = "http://example/", className = "example.GetOtherDrivers")
+    @ResponseWrapper(localName = "getOtherDriversResponse", targetNamespace = "http://example/", className = "example.GetOtherDriversResponse")
+    @Action(input = "http://example/OrderGojek/getOtherDriversRequest", output = "http://example/OrderGojek/getOtherDriversResponse")
+    public String getOtherDrivers(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
 
 }

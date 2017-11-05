@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%php
+<%--<%php
 include (__DIR__ . '/../controller/UserController.php');
 $currentPage = 'order';
 $currentSubPage = 'driver';
@@ -95,5 +95,5 @@ $otherDrivers = $user->getOtherDrivers($pickingPoint, $destination, $name);
     </div>
 </div>
 </body>
-</html>
+</html>--%>
 

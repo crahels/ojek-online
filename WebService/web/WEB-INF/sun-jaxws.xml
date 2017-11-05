@@ -6,4 +6,8 @@
             name='HelloWorld'
             implementation='example.HelloWorld'
             url-pattern='/services/HelloWorld'/>
+    <endpoint
+            name='OrderGojek'
+            implementation='example.OrderGojek'
+            url-pattern='/services/OrderGojek'/>
 </endpoints>

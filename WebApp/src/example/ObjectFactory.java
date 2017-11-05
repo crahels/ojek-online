@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _SayHelloWorldFrom_QNAME = new QName("http://example/", "sayHelloWorldFrom");
-    private final static QName _SayHelloWorldFromResponse_QNAME = new QName("http://example/", "sayHelloWorldFromResponse");
+    private final static QName _CheckExpiryTimeResponse_QNAME = new QName("http://example/", "checkExpiryTimeResponse");
+    private final static QName _CheckExpiryTime_QNAME = new QName("http://example/", "checkExpiryTime");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: example
@@ -35,37 +35,37 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SayHelloWorldFromResponse }
+     * Create an instance of {@link CheckExpiryTimeResponse }
      * 
      */
-    public SayHelloWorldFromResponse createSayHelloWorldFromResponse() {
-        return new SayHelloWorldFromResponse();
+    public CheckExpiryTimeResponse createCheckExpiryTimeResponse() {
+        return new CheckExpiryTimeResponse();
     }
 
     /**
-     * Create an instance of {@link SayHelloWorldFrom }
+     * Create an instance of {@link CheckExpiryTime }
      * 
      */
-    public SayHelloWorldFrom createSayHelloWorldFrom() {
-        return new SayHelloWorldFrom();
+    public CheckExpiryTime createCheckExpiryTime() {
+        return new CheckExpiryTime();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SayHelloWorldFrom }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CheckExpiryTimeResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "sayHelloWorldFrom")
-    public JAXBElement<SayHelloWorldFrom> createSayHelloWorldFrom(SayHelloWorldFrom value) {
-        return new JAXBElement<SayHelloWorldFrom>(_SayHelloWorldFrom_QNAME, SayHelloWorldFrom.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "checkExpiryTimeResponse")
+    public JAXBElement<CheckExpiryTimeResponse> createCheckExpiryTimeResponse(CheckExpiryTimeResponse value) {
+        return new JAXBElement<CheckExpiryTimeResponse>(_CheckExpiryTimeResponse_QNAME, CheckExpiryTimeResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SayHelloWorldFromResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CheckExpiryTime }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "sayHelloWorldFromResponse")
-    public JAXBElement<SayHelloWorldFromResponse> createSayHelloWorldFromResponse(SayHelloWorldFromResponse value) {
-        return new JAXBElement<SayHelloWorldFromResponse>(_SayHelloWorldFromResponse_QNAME, SayHelloWorldFromResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "checkExpiryTime")
+    public JAXBElement<CheckExpiryTime> createCheckExpiryTime(CheckExpiryTime value) {
+        return new JAXBElement<CheckExpiryTime>(_CheckExpiryTime_QNAME, CheckExpiryTime.class, null, value);
     }
 
 }

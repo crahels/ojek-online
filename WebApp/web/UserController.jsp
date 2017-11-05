@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%php
+<%--<%php
 require_once (__DIR__ . '/../model/User.php');
 $valid = false;
 $user = null;
@@ -21,4 +21,4 @@ if(!$valid) {
 header('Location: ' . ROOT_PATH . '/view/login.php');
 exit();
 }
-%>
+%>%-->

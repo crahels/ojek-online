@@ -12,8 +12,11 @@ public class HelloWorld {
         return result;
     }
     public static void main(String[] argv) {
-        Object implementor = new HelloWorld ();
+        Object implementor = new HelloWorld();
         String address = "http://localhost:8002/HelloWorld";
+        Endpoint.publish(address, implementor);
+        implementor = new OrderGojek();
+        address = "http://localhost:8002/OrderGojek";
         Endpoint.publish(address, implementor);
     }
 }

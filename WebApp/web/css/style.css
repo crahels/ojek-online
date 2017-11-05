@@ -17,21 +17,10 @@
     margin-top: 50px;
     margin-right: auto;
     margin-left: auto;
-<<<<<<< HEAD
     border: 9px solid #03702c;
     border-radius: 55px;
     background-color: #8bbd3c;
     padding: 10px 20px;
-=======
-    border: 9px solid;
-    border-color: #03702c;
-    border-radius: 55px;
-    background-color: #8bbd3c;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     height: 375px;
     width: 325px;
 }
@@ -91,11 +80,7 @@
 .button-add-location:hover, .button-next-order:hover,
 .logout:hover, .button-hide:hover, .button-i-choose-you:hover,
 .pencil:hover, .cross:hover, .checklist:hover
-<<<<<<< HEAD
 {
-=======
- {
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     opacity: 0.8;
     cursor: pointer;
 }
@@ -108,11 +93,7 @@
 }
 
 .button-login {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 80px;
     height: 1.5em;
     border: 2px solid black;
@@ -163,11 +144,7 @@
 }
 
 .button-signup {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 105px;
     height: 1.5em;
     border: 2px solid black;
@@ -221,14 +198,7 @@ h2 {
 .table-edit-profile input[type='text']:disabled {
     height: 20px;
     width: 312px;
-<<<<<<< HEAD
     margin: 8px 2px 30px 20px;
-=======
-    margin-right: 2px;
-    margin-top: 8px;
-    margin-bottom: 30px;
-    margin-left: 20px;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     background-color: white;
     border: 1px solid #C8C8C8;
 }
@@ -252,11 +222,7 @@ h2 {
 }
 
 .button-save {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 85px;
     height: 1.6em;
     border: 2px solid black;
@@ -271,11 +237,7 @@ h2 {
 }
 
 .button-back {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 85px;
     height: 1.6em;
     border: 2px solid black;
@@ -290,17 +252,10 @@ h2 {
 }
 
 .switch {
-<<<<<<< HEAD
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-=======
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
 }
 
 .switch input {
@@ -308,7 +263,6 @@ h2 {
 }
 
 .slider {
-<<<<<<< HEAD
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -352,51 +306,6 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
-=======
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #03702c;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #03702c;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
 }
 
 .table-edit-location {
@@ -412,14 +321,7 @@ input:checked + .slider:before {
 .table-edit-location td {
     font-family: 'rokkitt-regular';
     font-size: 22px;
-<<<<<<< HEAD
     padding: 1px 13px;
-=======
-    padding-left: 13px;
-    padding-right: 13px;
-    padding-top: 1px;
-    padding-bottom: 1px;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
 }
 
 .table-edit-location th {
@@ -447,11 +349,7 @@ h3 {
 }
 
 .button-add-location {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 80px;
     height: 1.75em;
     border: 2px solid black;
@@ -721,11 +619,7 @@ h1 {
 }
 
 .button-i-choose-you {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 150px;
     height: 30px;
     border: 1px solid black;
@@ -799,11 +693,7 @@ h1 {
 .button-hide {
     margin-top: 0;
     margin-right: 0;
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 85px;
     height: 1.6em;
     border: 2px solid black;
@@ -928,11 +818,7 @@ h1 {
 }
 
 .button-comment {
-<<<<<<< HEAD
     /* max-width: auto;*/
-=======
-    max-width: auto;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     width: 125px;
     height: 2.7em;
     border: 1px solid black;
@@ -980,14 +866,7 @@ input.stars:checked ~ label.stars:before {
 .edited-location {
     font-family: 'rokkitt-regular';
     font-size: 22px;
-<<<<<<< HEAD
     padding: 1px 0px;
-=======
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 1px;
-    padding-bottom: 1px;
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3
     border: 0px;
     background-color: white;
     margin: 0px;
@@ -1019,8 +898,4 @@ label.stars:hover {
 
 label.stars:before {
     content: '\2606';
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 35f4703886c7e996387b8a170d2dbe1c0a774df3

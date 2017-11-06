@@ -12,37 +12,36 @@
 <%
     application.setAttribute("currentPage","order");
     application.setAttribute("currentSubPage","driver");
+
     HttpSession sesi = request.getSession();
-    String token;
     sesi.setAttribute("token","dummy"); /* need to be replaced */
-    token = sesi.getAttribute("token").toString();
+    String token = sesi.getAttribute("token").toString();
     if (token == null) {
         response.sendRedirect("login.jsp");
     }
+
+    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
     String pickingPoint = sesi.getAttribute("pickingPoint").toString();
     String destination = sesi.getAttribute("destination").toString();
     String preferredDriver = sesi.getAttribute("preferredDriver").toString();
+
     OrderGojekService service = new OrderGojekService();
     OrderGojek port = service.getOrderGojekPort();
-    boolean result = port.checkExpiryTime(token);
     java.util.List<example.Driver> driver = null;
+    java.util.List<example.Driver> otherDriver = null;
+
+    boolean result = port.checkExpiryTime(token);
     if (!result) {
-        sesi.setAttribute("pickingPoint", pickingPoint);
-        sesi.setAttribute("destination", destination);
-        sesi.setAttribute("preferredDriver", preferredDriver);
-        // database
         try {
-            driver = port.getPreferredDrivers(pickingPoint, destination, preferredDriver);
-            for (example.Driver x : driver){
-                out.println(x.getUserName());
-                out.println(x.getRating());
-            }
+            driver = port.getPreferredDrivers(userId, pickingPoint, destination, preferredDriver);
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        //out.println(dummy + "hehe");
-        //response.sendRedirect("complete_order.jsp");
-        //$preferredDrivers = $user->getPreferredDrivers($pickingPoint, $destination, $name);
-        //$otherDrivers = $user->getOtherDrivers($pickingPoint, $destination, $name);
+        try {
+            //otherDriver = port.getOtherDrivers(userId, pickingPoint, destination, preferredDriver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     } else {
         response.sendRedirect("login.jsp");
     }
@@ -68,60 +67,57 @@
         <%
 				if(driver.size() > 0) {
 				    for (example.Driver x : driver) {
-						out.println(" <table class='table-select-driver'>" +
+						out.print(" <table class='table-select-driver'>" +
         "<tr>" +
             "<td>" +
                 "<img class='img-driver-pic' src='images/profile/" + x.getProfPic() + "' alt='DRIVER PICTURE'>" +
             "</td>" +
             "<td>" +
                 "<p class='driver-name'>" + x.getUserName() + "</p>" +
-                "<p class='star'><span class='orange'>&#10025; ' . $preferredDriver['ratings'] . '</span> (' . $preferredDriver['votes'];");
-                    if(x.getVote() > 1){
-                     ' votes)';
+                "<p class='star'><span class='orange'>&#10025;" + x.getRating() + "</span>(" + x.getVote ());
+                    if(x.getVote() > 1) {
+                        out.print(" votes)");
                     } else {
-                    echo ' vote)';
+                        out.print(" vote)");
                     }
-                    echo '</p>
-                <a href="complete_order.php?id_active=' . $user->id . '&picking_point=' . $pickingPoint . '&destination=' . $destination . '&preferred_driver=' . $name . '&driver_id=' . $preferredDriver['id'] . '"><input class="button-i-choose-you right" type="button" value="I CHOOSE YOU!!"> </a>
-            </td>
-        </tr>
-        </table>");
+                    out.print("</p>" +
+                "<a href='complete_order.jsp?pickingPoint=" + pickingPoint + "&destination=" + destination + "&preferredDriver=" + x.getUserName() + "&driverId=" + x.getUserId() + "'><input class='button-i-choose-you right' type='button' value='I CHOOSE YOU!!'> </a>" +
+            "</td>" +
+        "</tr>" +
+        "</table>");
         }
         } else {
-        echo '<p class="align-center nothing-to-display-margin">Nothing to display :(</p>';
-        }
-        --%>
+        out.print("<p class='align-center nothing-to-display-margin'>Nothing to display :(</p>");
+        } %>
     </div>
 
-    <div class="select-driver-border dark-grey">
+    <%--<div class="select-driver-border dark-grey">
         <h1>Other Drivers:</h1>
-        <%--?php
-				if($otherDrivers) {
-					foreach ($otherDrivers as $otherDriver) {
-						echo '
-						<table class="table-select-driver">
-        <tr>
-            <td>
-                <img class="img-driver-pic" src="../assets/images/profile/' . $otherDriver['profile_picture'] . '" alt="DRIVER PICTURE">
-            </td>
-            <td>
-                <p class="driver-name">' . $otherDriver['name'] . '</p>
-                <p class="star"><span class="orange">&#10025; ' . $otherDriver['ratings'] . '</span> (' . $otherDriver['votes'];
-                    if($otherDriver['votes'] > 1){
-                    echo ' votes)';
+        <%
+				if(otherDriver.size() > 0) {
+					for (example.Driver x : otherDriver) {
+						out.print("<table class='table-select-driver'>" +
+        "<tr>" +
+            "<td>" +
+                "<img class='img-driver-pic' src='images/profile/" + x.getProfPic() + "' alt='DRIVER PICTURE'>" +
+            "</td>" +
+            "<td>" +
+                "<p class='driver-name'>" + x.getUserName() + "</p>" +
+                "<p class='star'><span class='orange'>&#10025; " + x.getRating() + "</span> (" + x.getVote());
+                    if (x.getVote() > 1) {
+                    out.print(" votes)");
                     } else {
-                    echo ' vote)';
+                    out.print(" vote)");
                     }
-                    echo '</p>
-                <a href="complete_order.php?id_active=' . $user->id . '&picking_point=' . $pickingPoint . '&destination=' . $destination . '&preferred_driver=' . $name . '&driver_id=' . $otherDriver['id'] . '"><input class="button-i-choose-you right" type="submit" value="I CHOOSE YOU!!"></a>
-            </td>
-        </tr>
-        </table>';
+                    out.print("</p>" +
+                "<a href='complete_order.jsp?pickingPoint=" + pickingPoint + "&destination=" + destination + "&preferredDriver=" + x.getUserName() + "&driverId=" + x.getUserId() + "'><input class='button-i-choose-you right' type='submit' value='I CHOOSE YOU!!'></a>" +
+            "</td>" +
+        "</tr>" +
+        "</table>");
         }
         } else {
-        echo '<p class="align-center nothing-to-display-margin">Nothing to display :(</p>';
-        }
-        --%>
+        out.print("<p class='align-center nothing-to-display-margin'>Nothing to display :(</p>");
+        } %>--%>
     </div>
 </div>
 </body>

@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="userName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="userUsername" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="vote" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
     "rating",
     "userId",
     "userName",
+    "userUsername",
     "vote"
 })
 public class Driver {
@@ -43,6 +45,7 @@ public class Driver {
     protected float rating;
     protected int userId;
     protected String userName;
+    protected String userUsername;
     protected int vote;
 
     /**
@@ -123,6 +126,30 @@ public class Driver {
      */
     public void setUserName(String value) {
         this.userName = value;
+    }
+
+    /**
+     * Gets the value of the userUsername property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUserUsername() {
+        return userUsername;
+    }
+
+    /**
+     * Sets the value of the userUsername property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUserUsername(String value) {
+        this.userUsername = value;
     }
 
     /**

@@ -32,5 +32,25 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../jaxws-rt.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="jar://$MODULE_DIR$/../jaxws-rt.jar!/" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../json-simple-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="IdentityService" exported="" />
   </component>
 </module>

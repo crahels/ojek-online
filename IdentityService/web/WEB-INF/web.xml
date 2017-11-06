@@ -27,4 +27,12 @@
         <servlet-name>ValidateToken</servlet-name>
         <url-pattern>/validateToken</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderDriver</servlet-name>
+        <servlet-class>OrderDriverServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderDriver</servlet-name>
+        <url-pattern>/orderDriverServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

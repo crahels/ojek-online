@@ -52,7 +52,7 @@
         String urlParameters = "name="+fullname+
                 "&username="+username+
                 "&email="+email+
-                "&passwprd="+password+
+                "&password="+password+
                 "&phone_number="+phonenumber;
         // Send post request
         con.setDoOutput(true);

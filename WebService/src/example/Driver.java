@@ -5,12 +5,16 @@ import java.io.Serializable;
 public class Driver implements Serializable {
     private int user_id;
     private String name;
+    private String user_username;
     private String profile_picture;
     private int vote;
     private float rating;
 
     public int getUserId() {
         return user_id;
+    }
+    public String getUserUsername() {
+        return user_username;
     }
     public String getUserName() {
         return name;
@@ -39,14 +43,18 @@ public class Driver implements Serializable {
     public void setRating(float rating) {
         this.rating = rating;
     }
+    public void setUserUsername(String user_username) {
+        this.user_username = user_username;
+    }
 
-    public static Driver setDriverParam(int user_id, String name, String profile_picture, int vote, float rating) {
+    public static Driver setDriverParam(int user_id, String name, String username, String profile_picture, int vote, float rating) {
         Driver d = new Driver();
         d.setUserId(user_id);
         d.setUserName(name);
         d.setProfPic(profile_picture);
         d.setVote(vote);
         d.setRating(rating);
+        d.setUserUsername(username);
         return d;
     }
 }

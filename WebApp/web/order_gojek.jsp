@@ -11,10 +11,12 @@
 <%--<%@include file="UserController.jsp"%>--%>
 <%  application.setAttribute( "currentPage", "order");
     application.setAttribute("currentSubPage","destination");
+
     HttpSession sesi = request.getSession();
-    String token;
     sesi.setAttribute("token","dummy"); /* need to be replaced */
-    token = sesi.getAttribute("token").toString();
+    sesi.setAttribute("userId", "0"); /* need to be replaced */
+
+    String token = sesi.getAttribute("token").toString();
     if (token == null) {
         response.sendRedirect("login.jsp");
     }

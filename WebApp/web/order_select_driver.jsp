@@ -1,5 +1,6 @@
 <%@ page import="example.OrderGojekService" %>
 <%@ page import="example.OrderGojek" %>
+<%@ page import="example.Driver" %>
 <%--
   Created by IntelliJ IDEA.
   User: MARCELLINO
@@ -66,8 +67,8 @@
         <h1>Preferred Drivers:</h1>
         <%
 				if(driver.size() > 0) {
-				    for (example.Driver x : driver) {
-						out.print(" <table class='table-select-driver'>" +
+				    for (Driver x : driver) {
+						out.println(" <table class='table-select-driver'>" +
         "<tr>" +
             "<td>" +
                 "<img class='img-driver-pic' src='images/profile/" + x.getProfPic() + "' alt='DRIVER PICTURE'>" +

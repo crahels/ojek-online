@@ -2,22 +2,18 @@ package example;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-
-import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import classes.UserDriver;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebService(serviceName = "OrderGojekService")
 public class OrderGojek {
@@ -27,6 +23,62 @@ public class OrderGojek {
         // true means udh expired
         return false;
     }
+
+    /*
+    @WebMethod(operationName = "registerDOOServlet")
+    public void RegisterDOOServlet(String param_username, String param_phone_number, String param_status) throws IOException {
+        org.json.JSONObject arrayObj = new org.json.JSONObject();
+        com.mysql.jdbc.Connection Con = null;
+        try {
+            UserDOO user = new UserDOO(param_username,
+                    param_phone_number);
+            String username = user.getUsername();
+            String phone_number = user.getPhoneNumber();
+
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            Con = (com.mysql.jdbc.Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ojekonline",
+                    "root", "");
+
+            String status = param_status;
+            try {
+                //connect to database
+                Statement st = Con.createStatement();
+                //ResultSet rs;
+                String q = "insert into user(user_name, user_phone, user_status) " +
+                        "values " + "('" + username + "','" + phone_number + "','" + status + "')";
+                System.out.println("Query: " + q);
+                int i = st.executeUpdate(q);
+                if (i > 0) {
+                    String getIDQuery = "SELECT user_id FROM user WHERE user_name = '" + username + "';";
+                    Statement stm = Con.createStatement();
+                    ResultSet rs1 = stm.executeQuery(getIDQuery);
+                    while (rs1.next()) {
+                        int id = rs1.getInt("user_id");
+                        arrayObj.put("id", id);
+                        System.out.println("id : " + id + "\n");
+                    }
+                    System.out.println("Successfully add new user to database");
+                    arrayObj.put("tes", "yes");
+                } else {
+                    System.out.println("Failed to add token to database");
+                    arrayObj.put("tes", "no");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch ( ClassNotFoundException | IllegalAccessException | InstantiationException |
+                SQLException | JSONException theException) {
+            System.out.println("Register failed: An Exception has occurred! " + theException);
+        } finally {
+            if (Con != null) {
+                try {
+                    Con.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+    }*/
 
     @WebMethod(operationName = "getPreferredDrivers")
     public ArrayList<Driver> getPreferredDrivers(int id, String pickingPoint, String destination, String name) throws IllegalAccessException, ParseException {
@@ -148,7 +200,7 @@ public class OrderGojek {
                     rating = rs2.getFloat("ratings");
                     vote = rs2.getInt("votes");
                 }
-                driver.add(Driver.setDriverParam(user_id, user_name, "default.png", vote, rating));
+                driver.add(example.Driver.setDriverParam(user_id, user_name, "default.png", vote, rating));
                 rs2.close();
                 stmt2.close();
             }

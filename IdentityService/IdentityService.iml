@@ -23,7 +23,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../json-simple-1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/json-20140107.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -32,7 +32,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../json-20140107.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/json-simple-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -41,7 +41,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector-java-5.1.44-bin.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/mysql-connector-java-5.1.44-bin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

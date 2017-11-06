@@ -28,20 +28,21 @@ public class RegisterServlet extends HttpServlet {
         JSONObject arrayObj = new JSONObject();
         Connection Con = null;
         try {
+
             User user = new User(req.getParameter("username"),
                     req.getParameter("email"), req.getParameter("password"));
             String username = user.getUsername();
             String email = user.getEmail();
             String password = user.getPassword();
+
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline","root", "");
             String checkingQuery = "SELECT * FROM user WHERE user_username = '" + username + "' OR user_email = '" + email + "';";
             Statement stmt = Con.createStatement();
             ResultSet rs = stmt.executeQuery(checkingQuery);
-            if (rs != null) {
+            if (rs.next()) {
                 arrayObj.put("valid", "no");
-            }
-            else {
+            } else {
                 arrayObj.put("valid", "yes");
                 try {
                     //connect to database
@@ -79,6 +80,7 @@ public class RegisterServlet extends HttpServlet {
             }
         } catch ( ClassNotFoundException | IllegalAccessException | InstantiationException |
                 SQLException | JSONException theException) {
+            arrayObj.put("zxc", theException);
             System.out.println("Register failed: An Exception has occurred! " + theException);
         } finally {
             if (Con != null) {

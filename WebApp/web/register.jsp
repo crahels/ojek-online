@@ -24,20 +24,16 @@
     String username;
     String email;
     String password;
-    String confirmpassword;
-    String fulladdress;
-    String postalcode;
     String phonenumber;
     String errorMessage="";
-
+    out.println("ASDFASDFASDF");
     if(request.getParameter("register")!=null) {
-        fullname = request.getParameter("fname");
-        username = request.getParameter("uname");
+
+        fullname = request.getParameter("name");
+        username = request.getParameter("username");
         email = request.getParameter("email");
-        password = request.getParameter("psw");
-        fulladdress = request.getParameter("address");
-        postalcode = request.getParameter("pc");
-        phonenumber = request.getParameter("p_num");
+        password = request.getParameter("password");
+        phonenumber = request.getParameter("phone_number");
         String USER_AGENT = "Chrome/61.0.3163.100";
         String url = "http://localhost:8001/register";
         URL connection = new URL(url);
@@ -74,11 +70,12 @@
         con.disconnect();
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
-        String status= (String) obj.get("status");
+        String valid= (String) obj.get("valid");
         String token= (String) obj.get("token");
         //long userid = (Long) obj.get("userid");
-        out.println(status);
-        if(status.equals("ok")){
+        out.println(token);
+        out.println(valid);
+        if(valid.equals("yes")){
             //errorMessage="SUCCESSS " + token +tes;
             //out.println(errorMessage);
             sesi = request.getSession();
@@ -86,10 +83,14 @@
             //sesi.setAttribute("userid", userid);
             sesi.setAttribute("token", token);
             sesi.setMaxInactiveInterval(30*60);
-            String nextPage = "login.jsp";
+            String nextPage;
+            if (request.getParameter("is_driver") != null) {
+                nextPage = "profile.jsp";
+            } else {
+                nextPage = "order.jsp";
+            }
             response.sendRedirect(nextPage);
-        }
-        else{
+        } else {
             errorMessage= "USERNAME OR EMAIL NOT VALID";
             out.println(errorMessage);
         }
@@ -141,7 +142,7 @@
 
             <div class="form-signup-submit">
                 <a class="left" href="login.jsp">Already have an account?</a>
-                <input class="button-signup right" type="submit" value="REGISTER">
+                <input class="button-signup right" name="register" type="submit" value="REGISTER">
             </div>
         </form>
 

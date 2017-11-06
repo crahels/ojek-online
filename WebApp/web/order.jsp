@@ -105,4 +105,12 @@ $model->executeQuery($query);
 }
 }
 %>--%>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h1>ORDER</h1>
+</body>
+</html>
 

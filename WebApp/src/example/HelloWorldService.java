@@ -68,8 +68,8 @@ public class HelloWorldService
      *     returns HelloWorld
      */
     @WebEndpoint(name = "HelloWorldPort")
-    public example.HelloWorld getHelloWorldPort() {
-        return super.getPort(new QName("http://example/", "HelloWorldPort"), example.HelloWorld.class);
+    public HelloWorld getHelloWorldPort() {
+        return super.getPort(new QName("http://example/", "HelloWorldPort"), HelloWorld.class);
     }
 
     /**
@@ -80,7 +80,7 @@ public class HelloWorldService
      *     returns HelloWorld
      */
     @WebEndpoint(name = "HelloWorldPort")
-    public example.HelloWorld getHelloWorldPort(WebServiceFeature... features) {
+    public HelloWorld getHelloWorldPort(WebServiceFeature... features) {
         return super.getPort(new QName("http://example/", "HelloWorldPort"), HelloWorld.class, features);
     }
 

@@ -68,8 +68,8 @@ public class OrderGojekService
      *     returns OrderGojek
      */
     @WebEndpoint(name = "OrderGojekPort")
-    public OrderGojek getOrderGojekPort() {
-        return super.getPort(new QName("http://example/", "OrderGojekPort"), OrderGojek.class);
+    public example.OrderGojek getOrderGojekPort() {
+        return super.getPort(new QName("http://example/", "OrderGojekPort"), example.OrderGojek.class);
     }
 
     /**
@@ -80,7 +80,7 @@ public class OrderGojekService
      *     returns OrderGojek
      */
     @WebEndpoint(name = "OrderGojekPort")
-    public OrderGojek getOrderGojekPort(WebServiceFeature... features) {
+    public example.OrderGojek getOrderGojekPort(WebServiceFeature... features) {
         return super.getPort(new QName("http://example/", "OrderGojekPort"), OrderGojek.class, features);
     }
 

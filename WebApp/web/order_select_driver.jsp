@@ -1,5 +1,6 @@
 <%@ page import="example.OrderGojekService" %>
 <%@ page import="example.OrderGojek" %>
+<%@ page import="example.Driver" %>
 <%--
   Created by IntelliJ IDEA.
   User: MARCELLINO
@@ -25,7 +26,7 @@
     OrderGojekService service = new OrderGojekService();
     OrderGojek port = service.getOrderGojekPort();
     boolean result = port.checkExpiryTime(token);
-    java.util.List<example.Driver> driver = null;
+    java.util.List<Driver> driver = null;
     if (!result) {
         sesi.setAttribute("pickingPoint", pickingPoint);
         sesi.setAttribute("destination", destination);
@@ -33,7 +34,7 @@
         // database
         try {
             driver = port.getPreferredDrivers(pickingPoint, destination, preferredDriver);
-            for (example.Driver x : driver){
+            for (Driver x : driver){
                 out.println(x.getUserName());
                 out.println(x.getRating());
             }
@@ -67,7 +68,7 @@
         <h1>Preferred Drivers:</h1>
         <%
 				if(driver.size() > 0) {
-				    for (example.Driver x : driver) {
+				    for (Driver x : driver) {
 						out.println(" <table class='table-select-driver'>" +
         "<tr>" +
             "<td>" +

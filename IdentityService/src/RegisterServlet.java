@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
             String checkingQuery = "SELECT * FROM user WHERE user_username = '" + username + "' OR user_email = '" + email + "';";
             Statement stmt = Con.createStatement();
             ResultSet rs = stmt.executeQuery(checkingQuery);
-            if (rs != null) {
+            if (rs.next()) {
                 arrayObj.put("valid", "no");
             } else {
                 arrayObj.put("valid", "yes");
@@ -90,7 +90,6 @@ public class RegisterServlet extends HttpServlet {
                 }
             }
         }
-        arrayObj.put("asdf", "NO");
         resp.setContentType("application/json:charset=UTF-8");
         resp.getWriter().write(arrayObj.toString());
     }

@@ -24,7 +24,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../json-simple-1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/json-simple-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -33,7 +33,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jstl-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lib/jstl-1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class GetPreferredDriversResponse {
 
     @XmlElement(name = "return")
-    protected List<Driver> _return;
+    protected List<example.Driver> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,11 +55,11 @@ public class GetPreferredDriversResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Driver }
+     * {@link example.Driver }
      * 
      * 
      */
-    public List<Driver> getReturn() {
+    public List<example.Driver> getReturn() {
         if (_return == null) {
             _return = new ArrayList<Driver>();
         }

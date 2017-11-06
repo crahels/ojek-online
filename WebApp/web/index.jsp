@@ -11,15 +11,26 @@
     HttpSession sesi = request.getSession();
 %>
 <%
-    if (request.getParameter("login") != null) {
-        String USER_AGENT = "Mozilla/5.0";
+    String username;
+    String password;
+    String errorMessage="";
+
+    if(request.getParameter("register")!=null) {
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+
+        String USER_AGENT = "Chrome/61.0.3163.100";
         String url = "http://localhost:8001/login";
         URL connection = new URL(url);
         HttpURLConnection con = (HttpURLConnection) connection.openConnection();
+
+        //add reuqest header
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-        String urlParameters = "uname=aaa&psw=bbb";
+
+        String urlParameters = "username="+username+
+                "&password="+password;
         // Send post request
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -39,20 +50,25 @@
         in.close();
         con.disconnect();
         JSONParser parser = new JSONParser();
-        JSONObject obj = null;
-        try {
-            obj = (JSONObject) parser.parse(resp.toString());
-            String status = (String) obj.get("status");
-            if (status.equals("OK")) {
-                sesi = request.getSession();
-                String nextPage = "catalog.jsp";
-                response.sendRedirect(nextPage);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        JSONObject obj = (JSONObject) parser.parse(resp.toString());
+        String status = (String) obj.get("status");
+        //long userid = (Long) obj.get("userid");
+        String token  = (String) obj.get("token");
+        if(status.equals("ok")){
+            sesi = request.getSession();
+            sesi.setAttribute("username", username);
+            //sesi.setAttribute("userid", userid);
+            sesi.setAttribute("token", token);
+            String nextPage = "profile.jsp";
+            response.sendRedirect(nextPage);
+        }
+        else {
+            errorMessage= "USERNAME NOT VALID";
+            out.println(errorMessage);
         }
     }
 %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -87,7 +103,7 @@
             <input type="password" id="password" name="password" placeholder="Enter your password">
 
             <div class="form-login-submit">
-                <a class="left" href="#"><%--signup.jsp--%>Don't have an account?</a>
+                <a class="left" href="register.jsp"><%--signup.jsp--%>Don't have an account?</a>
                 <input class="button-login right" type="submit" name="login" value="GO!">
             </div>
         </form>

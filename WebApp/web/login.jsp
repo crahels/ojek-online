@@ -6,6 +6,75 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="org.json.simple.parser.JSONParser"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.DataOutputStream"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.net.HttpURLConnection"%>
+<%@page import="java.net.URL"%>
+<%
+    HttpSession sesi = request.getSession();
+%>
+<%
+    String username;
+    String password;
+    String errorMessage="";
+
+    if(request.getParameter("register")!=null) {
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+
+        String USER_AGENT = "Chrome/61.0.3163.100";
+        String url = "http://localhost:8001/login";
+        URL connection = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) connection.openConnection();
+
+        //add reuqest header
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+        String urlParameters = "username="+username+
+                "&password="+password;
+        // Send post request
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(urlParameters);
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder resp = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            resp.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+        JSONParser parser = new JSONParser();
+        JSONObject obj = (JSONObject) parser.parse(resp.toString());
+        String status = (String) obj.get("status");
+        //long userid = (Long) obj.get("userid");
+        String token  = (String) obj.get("token");
+        if(status.equals("ok")){
+            sesi = request.getSession();
+            sesi.setAttribute("username", username);
+            //sesi.setAttribute("userid", userid);
+            sesi.setAttribute("token", token);
+            String nextPage = "profile.jsp";
+            response.sendRedirect(nextPage);
+        }
+        else {
+            errorMessage= "USERNAME NOT VALID";
+            out.println(errorMessage);
+        }
+    }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

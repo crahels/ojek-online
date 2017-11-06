@@ -24,9 +24,6 @@
     String username;
     String email;
     String password;
-    String confirmpassword;
-    String fulladdress;
-    String postalcode;
     String phonenumber;
     String errorMessage="";
     out.println("ASDFASDFASDF");
@@ -75,16 +72,9 @@
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
         String valid= (String) obj.get("valid");
         String token= (String) obj.get("token");
-        String asdf= (String) obj.get("asdf");
-        String qwe= (String) obj.get("qwe");
-        String zxc= (String) obj.get("zxc");
         //long userid = (Long) obj.get("userid");
         out.println(token);
         out.println(valid);
-        out.println(asdf);
-        out.println(qwe);
-        out.println(zxc);
-        /*
         if(valid.equals("yes")){
             //errorMessage="SUCCESSS " + token +tes;
             //out.println(errorMessage);
@@ -93,12 +83,17 @@
             //sesi.setAttribute("userid", userid);
             sesi.setAttribute("token", token);
             sesi.setMaxInactiveInterval(30*60);
-            String nextPage = "login.jsp";
+            String nextPage;
+            if (request.getParameter("is_driver") != null) {
+                nextPage = "profile.jsp";
+            } else {
+                nextPage = "order.jsp";
+            }
             response.sendRedirect(nextPage);
         } else {
             errorMessage= "USERNAME OR EMAIL NOT VALID";
             out.println(errorMessage);
-        }*/
+        }
     }
 %>
 <!DOCTYPE html>

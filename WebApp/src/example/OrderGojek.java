@@ -47,7 +47,7 @@ public interface OrderGojek {
      * @param arg1
      * @param arg0
      * @return
-     *     returns java.util.List<example.Driver>
+     *     returns java.util.List<Driver>
      * @throws IllegalAccessException_Exception
      */
     @WebMethod

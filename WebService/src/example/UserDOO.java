@@ -1,4 +1,4 @@
-package OjekServices;
+package example;
 
 public class UserDOO {
     private String id;

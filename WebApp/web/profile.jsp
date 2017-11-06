@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    PROFILE
+<h1>PROFILE</h1>
 </body>
 </html>

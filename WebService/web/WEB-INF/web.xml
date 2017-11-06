@@ -15,6 +15,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>WSServlet</servlet-name>
-        <url-pattern>/services/*</url-pattern>
+        <url-pattern>/services/HelloWorld</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WSServlet</servlet-name>
+        <url-pattern>/services/OrderGojek</url-pattern>
     </servlet-mapping>
 </web-app>

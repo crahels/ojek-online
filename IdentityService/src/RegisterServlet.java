@@ -36,11 +36,8 @@ public class RegisterServlet extends HttpServlet {
             String password = user.getPassword();
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            arrayObj.put("qwe", "YES");
-            Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline",
-                    "root", "");
-            String checkingQuery = "SELECT * FROM user WHERE user_username = '" + username + "' OR user_email = '"
-                    + email + "';";
+            Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline","root", "");
+            String checkingQuery = "SELECT * FROM user WHERE user_username = '" + username + "' OR user_email = '" + email + "';";
             Statement stmt = Con.createStatement();
             ResultSet rs = stmt.executeQuery(checkingQuery);
             if (rs != null) {

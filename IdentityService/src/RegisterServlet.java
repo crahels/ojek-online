@@ -11,10 +11,10 @@ import com.mysql.jdbc.Connection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/registerServlet"})
+@WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
 
-    public String generateToken(int len) {
+    public static String generateToken(int len) {
         String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
         StringBuilder sb = new StringBuilder(len);
@@ -28,16 +28,22 @@ public class RegisterServlet extends HttpServlet {
         JSONObject arrayObj = new JSONObject();
         Connection Con = null;
         try {
-
-            User user = new User(req.getParameter("username"),
-                    req.getParameter("email"), req.getParameter("password"));
+            User user = new User(req.getParameter("name"), req.getParameter("phone_number"),
+                    req.getParameter("isDriver"), req.getParameter("username"), req.getParameter("email"),
+                    req.getParameter("password"));
+            String name = user.getName();
+            String phone = user.getPhone();
+            String status = user.getStatus();
             String username = user.getUsername();
             String email = user.getEmail();
             String password = user.getPassword();
 
+            //connect to the database
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline","root", "");
-            String checkingQuery = "SELECT * FROM user WHERE user_username = '" + username + "' OR user_email = '" + email + "';";
+            Con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/user_ojekonline",
+                    "root", "");
+            String checkingQuery = "SELECT * FROM user_info WHERE user_username = '" + username + "' OR user_email = '"
+                    + email + "';";
             Statement stmt = Con.createStatement();
             ResultSet rs = stmt.executeQuery(checkingQuery);
             if (rs.next()) {
@@ -45,34 +51,46 @@ public class RegisterServlet extends HttpServlet {
             } else {
                 arrayObj.put("valid", "yes");
                 try {
-                    //connect to database
-                    Statement st = Con.createStatement();
-                    String token = generateToken(20);
+                    Statement insertUser = Con.createStatement();
+                    String insertUserQuery = "INSERT INTO user_info(user_name, user_phone, user_status, " +
+                            "user_username, user_email, user_pass) VALUES ('" +  name + "','" + phone + "','"
+                            + status + "','" + username + "','" + email + "','" + password + "');";
+                    int i = insertUser.executeUpdate(insertUserQuery);
 
-                    Calendar now = Calendar.getInstance();
-                    now.add(Calendar.MINUTE, 15);
-                    java.sql.Date sqlDate = new java.sql.Date(now.getTimeInMillis());
-                    arrayObj.put("token", token);
-                    //ResultSet rs;
-                    String q = "insert into user(user_token, user_username, user_email, user_pass, expiry_time) " +
-                            "values " + "('" + token + "','" + username + "','" + email + "','" + password + "','"
-                            + sqlDate + "')";
-                    System.out.println("Query: " + q);
-                    int i = st.executeUpdate(q);
-                    if (i > 0) {
-                        String getIDQuery = "SELECT user_id FROM user WHERE user_username = '" + username + "';";
-                        Statement stm = Con.createStatement();
-                        ResultSet rs1 = stm.executeQuery(getIDQuery);
-                        while (rs1.next()) {
-                            int id = rs1.getInt("user_id");
-                            arrayObj.put("id", id);
-                            System.out.println("id : " + id + "\n");
+                    if (i <= 0) {
+                        arrayObj.put("user_info", "no");
+                    }
+                    else {
+                        arrayObj.put("user_info", "yes");
+                    }
+                    String getIDQuery = "SELECT user_id FROM user_info WHERE user_username = '" + username + "';";
+                    Statement stm = Con.createStatement();
+                    ResultSet rs1 = stm.executeQuery(getIDQuery);
+                    while (rs1.next()) {
+                        int id = rs1.getInt("user_id");
+                        String token = generateToken(20);
+                        Calendar now = Calendar.getInstance();
+                        now.add(Calendar.DATE, 1);
+                        java.sql.Date sqlDate = new java.sql.Date(now.getTimeInMillis());
+
+                        Statement st = Con.createStatement();
+                        String q = "INSERT INTO user(user_id, user_token, expiry_time) " +
+                                "VALUES ('" + id + "','" + token + "','" + sqlDate + "');";
+                        int j = st.executeUpdate(q);
+                        if (j > 0) {
+                            System.out.println("Successfully add new user to database");
+                            arrayObj.put("user_token", "yes");
+                            arrayObj.put("user_id", id);
+                            arrayObj.put("user_name", name);
+                            arrayObj.put("user_phone", phone);
+                            arrayObj.put("user_username", username);
+                            arrayObj.put("user_status", status);
+                            arrayObj.put("user_email", email);
+                            arrayObj.put("token", token);
+                        } else {
+                            System.out.println("Failed to add token to database");
+                            arrayObj.put("user_token", "no");
                         }
-                        System.out.println("Successfully add new user to database");
-                        arrayObj.put("tes", "yes");
-                    } else {
-                        System.out.println("Failed to add token to database");
-                        arrayObj.put("tes", "no");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -80,7 +98,7 @@ public class RegisterServlet extends HttpServlet {
             }
         } catch ( ClassNotFoundException | IllegalAccessException | InstantiationException |
                 SQLException | JSONException theException) {
-            arrayObj.put("zxc", theException);
+            //arrayObj.put("kevin", theException);
             System.out.println("Register failed: An Exception has occurred! " + theException);
         } finally {
             if (Con != null) {

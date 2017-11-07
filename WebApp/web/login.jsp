@@ -21,12 +21,12 @@
     String password;
     String errorMessage="";
 
-    if(request.getParameter("register")!=null) {
+    if(request.getParameter("login")!=null) {
         username = request.getParameter("username");
         password = request.getParameter("password");
 
-        String USER_AGENT = "Chrome/61.0.3163.100";
-        String url = "http://localhost:8001/login";
+        String USER_AGENT = "Mozilla/5.0";
+        String url = "http://localhost:8003/login";
         URL connection = new URL(url);
         HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 
@@ -57,16 +57,36 @@
         con.disconnect();
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
-        String status = (String) obj.get("status");
-        //long userid = (Long) obj.get("userid");
-        String token  = (String) obj.get("token");
-        if(status.equals("ok")){
-            sesi = request.getSession();
-            sesi.setAttribute("username", username);
-            //sesi.setAttribute("userid", userid);
-            sesi.setAttribute("token", token);
-            String nextPage = "profile.jsp";
-            response.sendRedirect(nextPage);
+        String valid = (String) obj.get("valid");
+
+        if(valid.equals("yes")){
+            String user_token = (String) obj.get("user_token");
+            if(user_token.equals("yes")){
+                Integer id = ((Long) obj.get("user_id")).intValue();
+                String token  = (String) obj.get("token");
+                String email = (String) obj.get("user_email");
+                String status = (String) obj.get("user_status");
+                String phone = (String) obj.get("user_phone");
+                sesi = request.getSession();
+                sesi.setAttribute("username", username);
+                sesi.setAttribute("userid", id);
+                sesi.setAttribute("token", token);
+                sesi.setAttribute("email", email);
+                sesi.setAttribute("status", status);
+                sesi.setAttribute("phone", phone);
+                sesi.setAttribute("token", token);
+                String nextPage;
+                if (sesi.getAttribute("status") == "0") {
+                    nextPage = "profile.jsp";
+                } else {
+                    nextPage = "order.jsp";
+                }
+                response.sendRedirect(nextPage);
+            }
+            else {
+                errorMessage= "Failed to insert data, server may be busy, please try again later";
+                out.println(errorMessage);
+            }
         }
         else {
             errorMessage= "USERNAME NOT VALID";
@@ -101,7 +121,7 @@
 
             <div class="form-login-submit">
                 <a class="left" href="register.jsp">Don't have an account?</a>
-                <input class="button-login right" type="submit" value="GO!">
+                <input class="button-login right" type="submit" name="login" value="GO!">
             </div>
         </form>
     </div>

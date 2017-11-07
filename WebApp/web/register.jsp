@@ -25,8 +25,8 @@
     String email;
     String password;
     String phonenumber;
+    String isDriver;
     String errorMessage="";
-    out.println("ASDFASDFASDF");
     if(request.getParameter("register")!=null) {
 
         fullname = request.getParameter("name");
@@ -34,6 +34,11 @@
         email = request.getParameter("email");
         password = request.getParameter("password");
         phonenumber = request.getParameter("phone_number");
+        if (request.getParameter("is_driver") != null) {
+            isDriver = "0";
+        } else {
+            isDriver = "1";
+        }
         String USER_AGENT = "Chrome/61.0.3163.100";
         String url = "http://localhost:8001/register";
         URL connection = new URL(url);
@@ -49,7 +54,8 @@
                 "&username="+username+
                 "&email="+email+
                 "&password="+password+
-                "&phone_number="+phonenumber;
+                "&phone_number="+phonenumber+
+                "&isDriver="+isDriver;
         // Send post request
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -72,9 +78,9 @@
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
         String valid= (String) obj.get("valid");
         String token= (String) obj.get("token");
+        String asdf= (String) obj.get("asdf");
+        String user_info= (String) obj.get("user_info");
         //long userid = (Long) obj.get("userid");
-        out.println(token);
-        out.println(valid);
         if(valid.equals("yes")){
             //errorMessage="SUCCESSS " + token +tes;
             //out.println(errorMessage);
@@ -113,7 +119,7 @@
             <hr class="left"/>Sign Up<hr class="right"/>
         </div>
 
-        <form  class="form-signup" action="" onsubmit="" method="">
+        <form  class="form-signup" action="" onsubmit="" method="post">
 
             <%--@declare id="phone number"--%>
             <label for="name">Your Name</label>

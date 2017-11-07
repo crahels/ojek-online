@@ -1,12 +1,18 @@
-<%@ page import="java.net.URL" %>
-<%@ page import="java.net.HttpURLConnection" %>
-<%@ page import="java.io.DataOutputStream" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: MASTER
+  Date: 11/4/2017
+  Time: 12:56 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="org.json.simple.parser.JSONParser"%>
 <%@page import="org.json.simple.JSONObject"%>
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.InputStreamReader" %>
-<%@ page import="org.json.simple.parser.ParseException" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.DataOutputStream"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.net.HttpURLConnection"%>
+<%@page import="java.net.URL"%>
 <%
     HttpSession sesi = request.getSession();
 %>
@@ -15,7 +21,7 @@
     String password;
     String errorMessage="";
 
-    if(request.getParameter("register")!=null) {
+    if(request.getParameter("login")!=null) {
         username = request.getParameter("username");
         password = request.getParameter("password");
 
@@ -51,15 +57,39 @@
         con.disconnect();
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
-        String status = (String) obj.get("status");
-        //long userid = (Long) obj.get("userid");
+        String valid = (String) obj.get("valid");
+        String user_token = (String) obj.get("user_token");
         String token  = (String) obj.get("token");
-        if(status.equals("ok")){
+        String email = (String) obj.get("user_email");
+        String status = (String) obj.get("user_status");
+        String phone = (String) obj.get("user_phone");
+        String asdf = (String) obj.get("asdf");
+
+        out.println(valid);
+        out.println(user_token);
+        out.println(token);
+        out.println(email);
+        out.println(status);
+        out.println(phone);
+        out.println(asdf);
+
+        Integer id = ((Long) obj.get("user_id")).intValue();
+
+        if(user_token.equals("yes")){
             sesi = request.getSession();
             sesi.setAttribute("username", username);
-            //sesi.setAttribute("userid", userid);
+            sesi.setAttribute("userid", id);
             sesi.setAttribute("token", token);
-            String nextPage = "profile.jsp";
+            sesi.setAttribute("email", email);
+            sesi.setAttribute("status", status);
+            sesi.setAttribute("phone", phone);
+            sesi.setAttribute("token", token);
+            String nextPage;
+            if (sesi.getAttribute("status") == "0") {
+                nextPage = "profile.jsp";
+            } else {
+                nextPage = "order.jsp";
+            }
             response.sendRedirect(nextPage);
         }
         else {
@@ -69,13 +99,14 @@
     }
 %>
 
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Login - PR-OJEK</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -85,17 +116,7 @@
             <hr class="left"/>Login<hr class="right"/>
         </div>
 
-        <div class="error-message-login">
-            <%--<?php
-                if(isset($_GET['invalid']) && $_GET['invalid'] == 'true') {
-                    echo '<script type="text/javascript">';
-                    echo 'alert("Invalid credentials.")';
-                    echo '</script>';
-                }
-            ?>--%>
-        </div>
-
-        <form  class="form-login" onsubmit="" method="POST">
+        <form  class="form-login" action="" onsubmit="" method="post">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
 
@@ -103,13 +124,13 @@
             <input type="password" id="password" name="password" placeholder="Enter your password">
 
             <div class="form-login-submit">
-                <a class="left" href="register.jsp"><%--signup.jsp--%>Don't have an account?</a>
+                <a class="left" href="register.jsp">Don't have an account?</a>
                 <input class="button-login right" type="submit" name="login" value="GO!">
             </div>
         </form>
     </div>
 </div>
 
-<!--<script type="text/javascript" src="js/login_validation.js"></script>-->
+<script type="text/javascript" src="../assets/js/login_validation.js"></script>
 </body>
 </html>

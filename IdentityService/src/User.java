@@ -1,51 +1,39 @@
 public class User {
     private String id;
+    private String name;
+    private String phone;
+    private String status;
     private String username;
-    private String token;
     private String email;
     private String password;
-    private String expiryTime;
 
-    public User(String username, String email, String password) {
+    public User(String name, String phone, String status, String username, String email, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.status = status;
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getExpiryTime() {
-        return expiryTime;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setEmail(String email) {
@@ -56,7 +44,32 @@ public class User {
         this.password = password;
     }
 
-    public void setExpiryTime(String expiryTime) {
-        this.expiryTime = expiryTime;
+    public String getId() {
+
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

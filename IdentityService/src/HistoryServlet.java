@@ -17,20 +17,16 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-        if (req.getParameter("isDriver").equals("yes")) {
-            try {
-                getDriverHistory(req, resp);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else if (req.getParameter("isDriver").equals("no")) {
-            getPassengerHistory(req, resp);
+        try {
+            getDriverHistory(req, resp);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -46,19 +42,16 @@ public class HistoryServlet extends HttpServlet {
         Con = (com.mysql.jdbc.Connection) DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/user_ojekonline", "root", "");
         Statement stmt = Con.createStatement();
-        String query = "SELECT user_name from user_info WHERE user_id = '" + userID + "';";
+        String query = "SELECT user_id, user_name from user_info WHERE user_id = '" + userID + "';";
         ResultSet rs = stmt.executeQuery(query);
 
         while (rs.next()) {
             String name = rs.getString("user_name");
             arrayObj.put("user_name", name);
+            int id = rs.getInt("user_id");
+            arrayObj.put("user_id", id);
         }
         resp.setContentType("application/json:charset=UTF-8");
         resp.getWriter().write(arrayObj.toString());
-    }
-
-    public void getPassengerHistory(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
-
     }
 }

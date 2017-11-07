@@ -7,6 +7,7 @@ import java.util.Date;
 public class UserDriverHistory {
     private long dateInMills;
     private String name;
+    private int id;
     private String picking_point;
     private String destination;
     private int rating;
@@ -42,6 +43,10 @@ public class UserDriverHistory {
         this.comment = comment;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public long getDateInMills() {
 
         return dateInMills;
@@ -70,6 +75,10 @@ public class UserDriverHistory {
         return comment;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getOrderId() {
 
         return order_id;
@@ -79,8 +88,9 @@ public class UserDriverHistory {
         return date;
     }
 
-    public UserDriverHistory(long dateInMills, String name, String picking_point, String destination, int rating,
+    public UserDriverHistory(int id, long dateInMills, String name, String picking_point, String destination, int rating,
                              String comment, int order_id) {
+        this.id = id;
         this.dateInMills = dateInMills;
         this.name = name;
         this.picking_point = picking_point;

@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="dateInMills" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="destination" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="orderId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="pickingPoint" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -38,6 +39,7 @@ import javax.xml.bind.annotation.XmlType;
     "date",
     "dateInMills",
     "destination",
+    "id",
     "name",
     "orderId",
     "pickingPoint",
@@ -49,6 +51,7 @@ public class UserDriverHistory {
     protected String date;
     protected long dateInMills;
     protected String destination;
+    protected int id;
     protected String name;
     protected int orderId;
     protected String pickingPoint;
@@ -140,6 +143,22 @@ public class UserDriverHistory {
      */
     public void setDestination(String value) {
         this.destination = value;
+    }
+
+    /**
+     * Gets the value of the id property.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
     }
 
     /**

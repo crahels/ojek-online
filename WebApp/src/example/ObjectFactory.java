@@ -27,11 +27,13 @@ public class ObjectFactory {
     private final static QName _HidePassanger_QNAME = new QName("http://example/", "hidePassanger");
     private final static QName _HidePassangerResponse_QNAME = new QName("http://example/", "hidePassangerResponse");
     private final static QName _CheckExpiryTimeResponse_QNAME = new QName("http://example/", "checkExpiryTimeResponse");
+    private final static QName _GetPassengerHistory_QNAME = new QName("http://example/", "getPassengerHistory");
+    private final static QName _HideDriverResponse_QNAME = new QName("http://example/", "hideDriverResponse");
+    private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
+    private final static QName _GetPassengerHistoryResponse_QNAME = new QName("http://example/", "getPassengerHistoryResponse");
     private final static QName _GetDriverHistoryResponse_QNAME = new QName("http://example/", "getDriverHistoryResponse");
     private final static QName _CheckExpiryTime_QNAME = new QName("http://example/", "checkExpiryTime");
-    private final static QName _HideDriverResponse_QNAME = new QName("http://example/", "hideDriverResponse");
     private final static QName _ClassNotFoundException_QNAME = new QName("http://example/", "ClassNotFoundException");
-    private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
     private final static QName _InstantiationException_QNAME = new QName("http://example/", "InstantiationException");
     private final static QName _GetDriverHistory_QNAME = new QName("http://example/", "getDriverHistory");
     private final static QName _HideDriver_QNAME = new QName("http://example/", "hideDriver");
@@ -53,19 +55,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetDriverHistoryResponse }
+     * Create an instance of {@link GetPassengerHistory }
      * 
      */
-    public GetDriverHistoryResponse createGetDriverHistoryResponse() {
-        return new GetDriverHistoryResponse();
-    }
-
-    /**
-     * Create an instance of {@link CheckExpiryTime }
-     * 
-     */
-    public CheckExpiryTime createCheckExpiryTime() {
-        return new CheckExpiryTime();
+    public GetPassengerHistory createGetPassengerHistory() {
+        return new GetPassengerHistory();
     }
 
     /**
@@ -90,6 +84,38 @@ public class ObjectFactory {
      */
     public HidePassangerResponse createHidePassangerResponse() {
         return new HidePassangerResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetPassengerHistoryResponse }
+     * 
+     */
+    public GetPassengerHistoryResponse createGetPassengerHistoryResponse() {
+        return new GetPassengerHistoryResponse();
+    }
+
+    /**
+     * Create an instance of {@link IllegalAccessException }
+     * 
+     */
+    public IllegalAccessException createIllegalAccessException() {
+        return new IllegalAccessException();
+    }
+
+    /**
+     * Create an instance of {@link GetDriverHistoryResponse }
+     * 
+     */
+    public GetDriverHistoryResponse createGetDriverHistoryResponse() {
+        return new GetDriverHistoryResponse();
+    }
+
+    /**
+     * Create an instance of {@link CheckExpiryTime }
+     * 
+     */
+    public CheckExpiryTime createCheckExpiryTime() {
+        return new CheckExpiryTime();
     }
 
     /**
@@ -122,14 +148,6 @@ public class ObjectFactory {
      */
     public ClassNotFoundException createClassNotFoundException() {
         return new ClassNotFoundException();
-    }
-
-    /**
-     * Create an instance of {@link IllegalAccessException }
-     * 
-     */
-    public IllegalAccessException createIllegalAccessException() {
-        return new IllegalAccessException();
     }
 
     /**
@@ -192,6 +210,42 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPassengerHistory }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getPassengerHistory")
+    public JAXBElement<GetPassengerHistory> createGetPassengerHistory(GetPassengerHistory value) {
+        return new JAXBElement<GetPassengerHistory>(_GetPassengerHistory_QNAME, GetPassengerHistory.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link HideDriverResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "hideDriverResponse")
+    public JAXBElement<HideDriverResponse> createHideDriverResponse(HideDriverResponse value) {
+        return new JAXBElement<HideDriverResponse>(_HideDriverResponse_QNAME, HideDriverResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IllegalAccessException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "IllegalAccessException")
+    public JAXBElement<IllegalAccessException> createIllegalAccessException(IllegalAccessException value) {
+        return new JAXBElement<IllegalAccessException>(_IllegalAccessException_QNAME, IllegalAccessException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetPassengerHistoryResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getPassengerHistoryResponse")
+    public JAXBElement<GetPassengerHistoryResponse> createGetPassengerHistoryResponse(GetPassengerHistoryResponse value) {
+        return new JAXBElement<GetPassengerHistoryResponse>(_GetPassengerHistoryResponse_QNAME, GetPassengerHistoryResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetDriverHistoryResponse }{@code >}}
      * 
      */
@@ -210,30 +264,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link HideDriverResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "hideDriverResponse")
-    public JAXBElement<HideDriverResponse> createHideDriverResponse(HideDriverResponse value) {
-        return new JAXBElement<HideDriverResponse>(_HideDriverResponse_QNAME, HideDriverResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ClassNotFoundException }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://example/", name = "ClassNotFoundException")
     public JAXBElement<ClassNotFoundException> createClassNotFoundException(ClassNotFoundException value) {
         return new JAXBElement<ClassNotFoundException>(_ClassNotFoundException_QNAME, ClassNotFoundException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IllegalAccessException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "IllegalAccessException")
-    public JAXBElement<IllegalAccessException> createIllegalAccessException(IllegalAccessException value) {
-        return new JAXBElement<IllegalAccessException>(_IllegalAccessException_QNAME, IllegalAccessException.class, null, value);
     }
 
     /**

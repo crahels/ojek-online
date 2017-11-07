@@ -25,8 +25,8 @@
         username = request.getParameter("username");
         password = request.getParameter("password");
 
-        String USER_AGENT = "Chrome/61.0.3163.100";
-        String url = "http://localhost:8001/login";
+        String USER_AGENT = "Mozilla/5.0";
+        String url = "http://localhost:8003/login";
         URL connection = new URL(url);
         HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 
@@ -58,39 +58,35 @@
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(resp.toString());
         String valid = (String) obj.get("valid");
-        String user_token = (String) obj.get("user_token");
-        String token  = (String) obj.get("token");
-        String email = (String) obj.get("user_email");
-        String status = (String) obj.get("user_status");
-        String phone = (String) obj.get("user_phone");
-        String asdf = (String) obj.get("asdf");
 
-        out.println(valid);
-        out.println(user_token);
-        out.println(token);
-        out.println(email);
-        out.println(status);
-        out.println(phone);
-        out.println(asdf);
-
-        Integer id = ((Long) obj.get("user_id")).intValue();
-
-        if(user_token.equals("yes")){
-            sesi = request.getSession();
-            sesi.setAttribute("username", username);
-            sesi.setAttribute("userid", id);
-            sesi.setAttribute("token", token);
-            sesi.setAttribute("email", email);
-            sesi.setAttribute("status", status);
-            sesi.setAttribute("phone", phone);
-            sesi.setAttribute("token", token);
-            String nextPage;
-            if (sesi.getAttribute("status") == "0") {
-                nextPage = "profile.jsp";
-            } else {
-                nextPage = "order.jsp";
+        if(valid.equals("yes")){
+            String user_token = (String) obj.get("user_token");
+            if(user_token.equals("yes")){
+                Integer id = ((Long) obj.get("user_id")).intValue();
+                String token  = (String) obj.get("token");
+                String email = (String) obj.get("user_email");
+                String status = (String) obj.get("user_status");
+                String phone = (String) obj.get("user_phone");
+                sesi = request.getSession();
+                sesi.setAttribute("username", username);
+                sesi.setAttribute("userid", id);
+                sesi.setAttribute("token", token);
+                sesi.setAttribute("email", email);
+                sesi.setAttribute("status", status);
+                sesi.setAttribute("phone", phone);
+                sesi.setAttribute("token", token);
+                String nextPage;
+                if (sesi.getAttribute("status") == "0") {
+                    nextPage = "profile.jsp";
+                } else {
+                    nextPage = "order.jsp";
+                }
+                response.sendRedirect(nextPage);
             }
-            response.sendRedirect(nextPage);
+            else {
+                errorMessage= "Failed to insert data, server may be busy, please try again later";
+                out.println(errorMessage);
+            }
         }
         else {
             errorMessage= "USERNAME NOT VALID";

@@ -34,12 +34,12 @@
     boolean result = port.checkExpiryTime(token);
     if (!result) {
         try {
-            driver = port.getPreferredDrivers(userId, pickingPoint, destination, preferredDriver);
+            driver = port.getPreferredDrivers(true, userId, pickingPoint, destination, preferredDriver);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            //otherDriver = port.getOtherDrivers(userId, pickingPoint, destination, preferredDriver);
+            otherDriver = port.getPreferredDrivers(false, userId, pickingPoint, destination, preferredDriver);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,7 +82,7 @@
                         out.print(" vote)");
                     }
                     out.print("</p>" +
-                "<a href='complete_order.jsp?pickingPoint=" + pickingPoint + "&destination=" + destination + "&preferredDriver=" + x.getUserName() + "&driverId=" + x.getUserId() + "'><input class='button-i-choose-you right' type='button' value='I CHOOSE YOU!!'> </a>" +
+                "<a href='complete_order.jsp?pickingPoint=" + pickingPoint + "&userName=" + x.getUserName() + "&destination=" + destination + "&preferredDriver=" + x.getUserName() + "&driverId=" + x.getUserId() + "'><input class='button-i-choose-you right' type='button' value='I CHOOSE YOU!!'> </a>" +
             "</td>" +
         "</tr>" +
         "</table>");
@@ -92,7 +92,7 @@
         } %>
     </div>
 
-    <%--<div class="select-driver-border dark-grey">
+    <div class="select-driver-border dark-grey">
         <h1>Other Drivers:</h1>
         <%
 				if(otherDriver.size() > 0) {
@@ -111,14 +111,14 @@
                     out.print(" vote)");
                     }
                     out.print("</p>" +
-                "<a href='complete_order.jsp?pickingPoint=" + pickingPoint + "&destination=" + destination + "&preferredDriver=" + x.getUserName() + "&driverId=" + x.getUserId() + "'><input class='button-i-choose-you right' type='submit' value='I CHOOSE YOU!!'></a>" +
+                "<a href='complete_order.jsp?pickingPoint=" + pickingPoint + "&userName=" + x.getUserName() + "&destination=" + destination + "&preferredDriver=" + x.getUserUsername() + "&driverId=" + x.getUserId() + "'><input class='button-i-choose-you right' type='submit' value='I CHOOSE YOU!!'></a>" +
             "</td>" +
         "</tr>" +
         "</table>");
         }
         } else {
         out.print("<p class='align-center nothing-to-display-margin'>Nothing to display :(</p>");
-        } %>--%>
+        } %>
     </div>
 </div>
 </body>

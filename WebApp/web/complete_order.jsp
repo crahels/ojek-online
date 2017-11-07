@@ -1,4 +1,7 @@
-<%--
+<%@ page import="example.OrderGojekService" %>
+<%@ page import="example.OrderGojek" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.util.Calendar" %><%--
   Created by IntelliJ IDEA.
   User: MARCELLINO
   Date: 06/11/2017
@@ -9,10 +12,6 @@
 <%
     application.setAttribute("currentPage","order");
     application.setAttribute("currentSubPage","complete");
-    String pickingPoint = request.getParameter("pickingPoint");
-    String destination = request.getParameter("destination");
-    String preferredDriver = request.getParameter("preferredDriver");
-    int driverId = Integer.parseInt(request.getParameter("driverId"));
 
     HttpSession sesi = request.getSession();
     String token;
@@ -21,7 +20,32 @@
     if (token == null) {
         response.sendRedirect("login.jsp");
     }
-    int userId = 0; /* dummy */
+
+    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
+    String pickingPoint = request.getParameter("pickingPoint");
+    String destination = request.getParameter("destination");
+    String preferredDriver = request.getParameter("preferredDriver");
+    String driverName = request.getParameter("userName");
+    int driverId = Integer.parseInt(request.getParameter("driverId"));
+
+    OrderGojekService service = new OrderGojekService();
+    OrderGojek port = service.getOrderGojekPort();
+
+    boolean result = port.checkExpiryTime(token);
+    if (!result) {
+        try {
+            if (request.getParameter("complete") != null) {
+                int rating = Integer.parseInt(request.getParameter("star"));
+                String comment = request.getParameter("comment");
+                port.addOrderToDatabase(pickingPoint, destination, userId, driverId, rating, comment);
+                response.sendRedirect("order_gojek.jsp");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } else {
+        response.sendRedirect("login.jsp");
+    }
 %>
 
 <!DOCTYPE html>
@@ -41,13 +65,13 @@
     <%@include file="order_header.jsp"%>
     <h3>How Was It?</h3>
     <img src="images/profile/default.png" class="img-circle"></img>
-    <p class="username-driver">@<?php echo $driver->username?></p>
-    <p class="name-driver"><?php echo $driver->name?></p>
+    <p class="username-driver">@<% out.print(preferredDriver); %></p>
+    <p class="name-driver"><% out.print(driverName); %></p>
 
     <form action="" method="post" onsubmit="return validateCompleteOrder()">
-        <input type="hidden" id="picking_point" name="picking_point" value=<?php echo $_GET['picking_point'];?>>
-        <input type="hidden" id="destination" name="destination" value=<?php echo $_GET['destination'];?>>
-        <input type="hidden" id="driver_id" name="driver_id" value=<?php echo $_GET['driver_id'];?>>
+        <input type="hidden" id="picking_point" name="picking_point" value=<% out.print(pickingPoint); %>>
+        <input type="hidden" id="destination" name="destination" value=<% out.print(destination); %>>
+        <input type="hidden" id="driver_id" name="driver_id" value=<% out.print(driverId); %>>
         <div class="stars">
             <input class="stars star-5" id="star-5" type="radio" name="star" value=5>
             <label class="stars star-5" for="star-5"></label>

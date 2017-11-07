@@ -19,7 +19,7 @@ public class OrderDriverServlet extends HttpServlet {
         if (req.getParameter("isPref").equals("yes")) {
             getPreferredDriver(req, resp);
         } else if (req.getParameter("isPref").equals("no")) {
-            //getOtherDriver(req, resp);
+            getOtherDriver(req, resp);
         }
     }
 
@@ -36,7 +36,7 @@ public class OrderDriverServlet extends HttpServlet {
                 con = (com.mysql.jdbc.Connection) DriverManager.getConnection(
                         "jdbc:mysql://localhost:3306/user_ojekonline", "root", "");
                 Statement stmt = con.createStatement();
-                String query = "SELECT user_id, user_name, user_username from user_info WHERE (user_status = '0' OR user_status = '2') AND UPPER(user_name) = UPPER('" + preferredDriver + "')" + "AND user_id <> '" + userId + "';";
+                String query = "SELECT user_id, user_name, user_username from user_info WHERE (user_status = '0' OR user_status = '2') AND UPPER(user_name) = UPPER('" + preferredDriver + "')" + " AND user_id <> '" + userId + "';";
                 ResultSet rs = stmt.executeQuery(query);
                 driver = new ArrayList<>();
                 while (rs.next()) {
@@ -72,10 +72,10 @@ public class OrderDriverServlet extends HttpServlet {
             String preferredDriver = req.getParameter("preferredDriver");
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                con = (com.mysql.jdbc.Connection) DriverManager.getConnection(
+                con = (com.mysql.jdbc.Connection) DriverManager.getConnection (
                         "jdbc:mysql://localhost:3306/user_ojekonline", "root", "");
                 Statement stmt = con.createStatement();
-                String query = "SELECT user_id, user_name, user_username from user_info WHERE (user_status = '0' OR user_status = '2') AND UPPER(user_name) <> UPPER('" + preferredDriver + "')" + "AND user_id <> '" + userId + "';";
+                String query = "SELECT user_id, user_name, user_username from user_info WHERE (user_status = '0' OR user_status = '2') AND UPPER(user_name) <> UPPER('" + preferredDriver + "')" + " AND user_id <> '" + userId + "';";
                 ResultSet rs = stmt.executeQuery(query);
                 driver = new ArrayList<>();
                 while (rs.next()) {

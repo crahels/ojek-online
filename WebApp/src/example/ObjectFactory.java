@@ -27,7 +27,9 @@ public class ObjectFactory {
     private final static QName _CheckExpiryTimeResponse_QNAME = new QName("http://example/", "checkExpiryTimeResponse");
     private final static QName _CheckExpiryTime_QNAME = new QName("http://example/", "checkExpiryTime");
     private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
+    private final static QName _AddOrderToDatabaseResponse_QNAME = new QName("http://example/", "addOrderToDatabaseResponse");
     private final static QName _GetPreferredDriversResponse_QNAME = new QName("http://example/", "getPreferredDriversResponse");
+    private final static QName _AddOrderToDatabase_QNAME = new QName("http://example/", "addOrderToDatabase");
     private final static QName _GetPreferredDrivers_QNAME = new QName("http://example/", "getPreferredDrivers");
     private final static QName _ParseException_QNAME = new QName("http://example/", "ParseException");
 
@@ -55,6 +57,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddOrderToDatabase }
+     * 
+     */
+    public AddOrderToDatabase createAddOrderToDatabase() {
+        return new AddOrderToDatabase();
+    }
+
+    /**
      * Create an instance of {@link GetPreferredDrivers }
      * 
      */
@@ -76,6 +86,14 @@ public class ObjectFactory {
      */
     public IllegalAccessException createIllegalAccessException() {
         return new IllegalAccessException();
+    }
+
+    /**
+     * Create an instance of {@link AddOrderToDatabaseResponse }
+     * 
+     */
+    public AddOrderToDatabaseResponse createAddOrderToDatabaseResponse() {
+        return new AddOrderToDatabaseResponse();
     }
 
     /**
@@ -122,12 +140,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabaseResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabaseResponse")
+    public JAXBElement<AddOrderToDatabaseResponse> createAddOrderToDatabaseResponse(AddOrderToDatabaseResponse value) {
+        return new JAXBElement<AddOrderToDatabaseResponse>(_AddOrderToDatabaseResponse_QNAME, AddOrderToDatabaseResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDriversResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://example/", name = "getPreferredDriversResponse")
     public JAXBElement<GetPreferredDriversResponse> createGetPreferredDriversResponse(GetPreferredDriversResponse value) {
         return new JAXBElement<GetPreferredDriversResponse>(_GetPreferredDriversResponse_QNAME, GetPreferredDriversResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabase }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabase")
+    public JAXBElement<AddOrderToDatabase> createAddOrderToDatabase(AddOrderToDatabase value) {
+        return new JAXBElement<AddOrderToDatabase>(_AddOrderToDatabase_QNAME, AddOrderToDatabase.class, null, value);
     }
 
     /**

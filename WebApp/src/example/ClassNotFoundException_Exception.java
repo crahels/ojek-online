@@ -10,8 +10,8 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "ParseException", targetNamespace = "http://example/")
-public class ParseException_Exception
+@WebFault(name = "ClassNotFoundException", targetNamespace = "http://example/")
+public class ClassNotFoundException_Exception
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class ParseException_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private ParseException faultInfo;
+    private ClassNotFoundException faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public ParseException_Exception(String message, ParseException faultInfo) {
+    public ClassNotFoundException_Exception(String message, ClassNotFoundException faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class ParseException_Exception
      * @param cause
      * @param message
      */
-    public ParseException_Exception(String message, ParseException faultInfo, java.lang.Throwable cause) {
+    public ClassNotFoundException_Exception(String message, ClassNotFoundException faultInfo, java.lang.Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class ParseException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: example.ParseException
+     *     returns fault bean: example.ClassNotFoundException
      */
-    public ParseException getFaultInfo() {
+    public ClassNotFoundException getFaultInfo() {
         return faultInfo;
     }
 

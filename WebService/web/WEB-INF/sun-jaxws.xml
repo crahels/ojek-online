@@ -10,4 +10,8 @@
             name='OrderGojek'
             implementation='example.OrderGojek'
             url-pattern='/services/OrderGojek'/>
+    <endpoint
+            name='HistoryGojek'
+            implementation='example.HistoryGojek'
+            url-pattern='/services/HistoryGojek'/>
 </endpoints>

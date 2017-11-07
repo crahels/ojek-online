@@ -37,7 +37,7 @@ public class IllegalAccessException_Exception
      * @param cause
      * @param message
      */
-    public IllegalAccessException_Exception(String message, IllegalAccessException faultInfo, Throwable cause) {
+    public IllegalAccessException_Exception(String message, IllegalAccessException faultInfo, java.lang.Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }

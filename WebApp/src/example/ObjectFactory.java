@@ -24,13 +24,17 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _HidePassanger_QNAME = new QName("http://example/", "hidePassanger");
+    private final static QName _HidePassangerResponse_QNAME = new QName("http://example/", "hidePassangerResponse");
     private final static QName _CheckExpiryTimeResponse_QNAME = new QName("http://example/", "checkExpiryTimeResponse");
+    private final static QName _GetDriverHistoryResponse_QNAME = new QName("http://example/", "getDriverHistoryResponse");
     private final static QName _CheckExpiryTime_QNAME = new QName("http://example/", "checkExpiryTime");
+    private final static QName _HideDriverResponse_QNAME = new QName("http://example/", "hideDriverResponse");
+    private final static QName _ClassNotFoundException_QNAME = new QName("http://example/", "ClassNotFoundException");
     private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
-    private final static QName _AddOrderToDatabaseResponse_QNAME = new QName("http://example/", "addOrderToDatabaseResponse");
-    private final static QName _GetPreferredDriversResponse_QNAME = new QName("http://example/", "getPreferredDriversResponse");
-    private final static QName _AddOrderToDatabase_QNAME = new QName("http://example/", "addOrderToDatabase");
-    private final static QName _GetPreferredDrivers_QNAME = new QName("http://example/", "getPreferredDrivers");
+    private final static QName _InstantiationException_QNAME = new QName("http://example/", "InstantiationException");
+    private final static QName _GetDriverHistory_QNAME = new QName("http://example/", "getDriverHistory");
+    private final static QName _HideDriver_QNAME = new QName("http://example/", "hideDriver");
     private final static QName _ParseException_QNAME = new QName("http://example/", "ParseException");
 
     /**
@@ -49,6 +53,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetDriverHistoryResponse }
+     * 
+     */
+    public GetDriverHistoryResponse createGetDriverHistoryResponse() {
+        return new GetDriverHistoryResponse();
+    }
+
+    /**
      * Create an instance of {@link CheckExpiryTime }
      * 
      */
@@ -57,19 +69,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddOrderToDatabase }
+     * Create an instance of {@link HideDriverResponse }
      * 
      */
-    public AddOrderToDatabase createAddOrderToDatabase() {
-        return new AddOrderToDatabase();
+    public HideDriverResponse createHideDriverResponse() {
+        return new HideDriverResponse();
     }
 
     /**
-     * Create an instance of {@link GetPreferredDrivers }
+     * Create an instance of {@link HidePassanger }
      * 
      */
-    public GetPreferredDrivers createGetPreferredDrivers() {
-        return new GetPreferredDrivers();
+    public HidePassanger createHidePassanger() {
+        return new HidePassanger();
+    }
+
+    /**
+     * Create an instance of {@link HidePassangerResponse }
+     * 
+     */
+    public HidePassangerResponse createHidePassangerResponse() {
+        return new HidePassangerResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDriverHistory }
+     * 
+     */
+    public GetDriverHistory createGetDriverHistory() {
+        return new GetDriverHistory();
+    }
+
+    /**
+     * Create an instance of {@link HideDriver }
+     * 
+     */
+    public HideDriver createHideDriver() {
+        return new HideDriver();
     }
 
     /**
@@ -81,6 +117,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ClassNotFoundException }
+     * 
+     */
+    public ClassNotFoundException createClassNotFoundException() {
+        return new ClassNotFoundException();
+    }
+
+    /**
      * Create an instance of {@link IllegalAccessException }
      * 
      */
@@ -89,27 +133,53 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddOrderToDatabaseResponse }
+     * Create an instance of {@link InstantiationException }
      * 
      */
-    public AddOrderToDatabaseResponse createAddOrderToDatabaseResponse() {
-        return new AddOrderToDatabaseResponse();
+    public InstantiationException createInstantiationException() {
+        return new InstantiationException();
     }
 
     /**
-     * Create an instance of {@link GetPreferredDriversResponse }
+     * Create an instance of {@link Throwable }
      * 
      */
-    public GetPreferredDriversResponse createGetPreferredDriversResponse() {
-        return new GetPreferredDriversResponse();
+    public Throwable createThrowable() {
+        return new Throwable();
     }
 
     /**
-     * Create an instance of {@link Driver }
+     * Create an instance of {@link UserDriverHistory }
      * 
      */
-    public Driver createDriver() {
-        return new Driver();
+    public UserDriverHistory createUserDriverHistory() {
+        return new UserDriverHistory();
+    }
+
+    /**
+     * Create an instance of {@link StackTraceElement }
+     * 
+     */
+    public StackTraceElement createStackTraceElement() {
+        return new StackTraceElement();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link HidePassanger }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "hidePassanger")
+    public JAXBElement<HidePassanger> createHidePassanger(HidePassanger value) {
+        return new JAXBElement<HidePassanger>(_HidePassanger_QNAME, HidePassanger.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link HidePassangerResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "hidePassangerResponse")
+    public JAXBElement<HidePassangerResponse> createHidePassangerResponse(HidePassangerResponse value) {
+        return new JAXBElement<HidePassangerResponse>(_HidePassangerResponse_QNAME, HidePassangerResponse.class, null, value);
     }
 
     /**
@@ -122,12 +192,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDriverHistoryResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getDriverHistoryResponse")
+    public JAXBElement<GetDriverHistoryResponse> createGetDriverHistoryResponse(GetDriverHistoryResponse value) {
+        return new JAXBElement<GetDriverHistoryResponse>(_GetDriverHistoryResponse_QNAME, GetDriverHistoryResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CheckExpiryTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://example/", name = "checkExpiryTime")
     public JAXBElement<CheckExpiryTime> createCheckExpiryTime(CheckExpiryTime value) {
         return new JAXBElement<CheckExpiryTime>(_CheckExpiryTime_QNAME, CheckExpiryTime.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link HideDriverResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "hideDriverResponse")
+    public JAXBElement<HideDriverResponse> createHideDriverResponse(HideDriverResponse value) {
+        return new JAXBElement<HideDriverResponse>(_HideDriverResponse_QNAME, HideDriverResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClassNotFoundException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "ClassNotFoundException")
+    public JAXBElement<ClassNotFoundException> createClassNotFoundException(ClassNotFoundException value) {
+        return new JAXBElement<ClassNotFoundException>(_ClassNotFoundException_QNAME, ClassNotFoundException.class, null, value);
     }
 
     /**
@@ -140,39 +237,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabaseResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InstantiationException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabaseResponse")
-    public JAXBElement<AddOrderToDatabaseResponse> createAddOrderToDatabaseResponse(AddOrderToDatabaseResponse value) {
-        return new JAXBElement<AddOrderToDatabaseResponse>(_AddOrderToDatabaseResponse_QNAME, AddOrderToDatabaseResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "InstantiationException")
+    public JAXBElement<InstantiationException> createInstantiationException(InstantiationException value) {
+        return new JAXBElement<InstantiationException>(_InstantiationException_QNAME, InstantiationException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDriversResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDriverHistory }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "getPreferredDriversResponse")
-    public JAXBElement<GetPreferredDriversResponse> createGetPreferredDriversResponse(GetPreferredDriversResponse value) {
-        return new JAXBElement<GetPreferredDriversResponse>(_GetPreferredDriversResponse_QNAME, GetPreferredDriversResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "getDriverHistory")
+    public JAXBElement<GetDriverHistory> createGetDriverHistory(GetDriverHistory value) {
+        return new JAXBElement<GetDriverHistory>(_GetDriverHistory_QNAME, GetDriverHistory.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabase }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link HideDriver }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabase")
-    public JAXBElement<AddOrderToDatabase> createAddOrderToDatabase(AddOrderToDatabase value) {
-        return new JAXBElement<AddOrderToDatabase>(_AddOrderToDatabase_QNAME, AddOrderToDatabase.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDrivers }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "getPreferredDrivers")
-    public JAXBElement<GetPreferredDrivers> createGetPreferredDrivers(GetPreferredDrivers value) {
-        return new JAXBElement<GetPreferredDrivers>(_GetPreferredDrivers_QNAME, GetPreferredDrivers.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "hideDriver")
+    public JAXBElement<HideDriver> createHideDriver(HideDriver value) {
+        return new JAXBElement<HideDriver>(_HideDriver_QNAME, HideDriver.class, null, value);
     }
 
     /**

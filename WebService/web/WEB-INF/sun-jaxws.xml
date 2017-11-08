@@ -14,4 +14,8 @@
             name='Location'
             implementation='example.Location'
             url-pattern='/services/Location'/>
+    <endpoint
+        name='HistoryGojek'
+        implementation='example.HistoryGojek'
+        url-pattern='/services/HistoryGojek'/>
 </endpoints>

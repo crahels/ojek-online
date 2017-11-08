@@ -550,6 +550,10 @@ h1 {
 
 .cross {
     text-decoration: none;
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    float: right;
 }
 
 .pencil::before {
@@ -557,8 +561,12 @@ h1 {
 }
 
 .pencil {
-    transform: rotate(165deg);
     text-decoration: none;
+    color: #fe9959;
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    float: left;
 }
 
 .user-details {
@@ -879,6 +887,10 @@ input.stars:checked ~ label.stars:before {
 .checklist {
     text-decoration: none;
     color: #8ae600;
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    float: left;
 }
 
 input.star-5:checked ~ label.stars:before {

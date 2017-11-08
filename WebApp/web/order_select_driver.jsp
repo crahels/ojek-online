@@ -30,7 +30,6 @@
     OrderGojek port = service.getOrderGojekPort();
     java.util.List<example.Driver> driver = null;
     java.util.List<example.Driver> otherDriver = null;
-
     boolean result = port.checkExpiryTime(token);
     if (!result) {
         try {

@@ -21,7 +21,7 @@
     }*/
 
     int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-    
+
     HistoryGojekService service = new HistoryGojekService();
     HistoryGojek port = service.getHistoryGojekPort();
     java.util.List<UserDriverHistory> driverList = null;

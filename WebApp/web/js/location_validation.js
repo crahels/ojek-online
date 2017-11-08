@@ -20,23 +20,6 @@ function validateLocation() {
     }
 }
 
-//Menghapus lokasi
-function deleteLocation (loc_name, user_id) {
-	var xmlhttp = new XMLHttpRequest();
-
-	 xmlhttp.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 200) {
-            location.reload();
-        }
-     };
-
-	if (confirm("Delete this location?") == true) {
-	    xmlhttp.open("DELETE", "/TugasBesar1_2017/controller/EditUserPreferredLocationsController.php?id_active=" + user_id + "&loc_name=" + loc_name, true);
-	    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	    xmlhttp.send();
-	}
-}
-
 //Mengaktifkan mode edit lokasi.
 function editLocation (loc_name, user_id) {
 	document.getElementById(loc_name + "id").className="edited-location";
@@ -47,7 +30,6 @@ function editLocation (loc_name, user_id) {
 
 //Menyimpan lokasi yang telah diedit.
 function saveLocation (loc_name, user_id) {
-	var xmlhttp = new XMLHttpRequest();
 	document.getElementById(loc_name + "id").className="edited-location hidden";
 	document.getElementById(loc_name + "label").className="edited-location";
 	document.getElementById(loc_name + "save").className="checklist hidden";
@@ -63,19 +45,4 @@ function saveLocation (loc_name, user_id) {
    		error = true;
    		errorMsg += "Location cannot be blank.";
     }
-
-    if (error) {
-    	alert(errorMsg);
-    	return false;
-    } else {
-    	xmlhttp.open("POST", "/TugasBesar1_2017/controller/EditUserPreferredLocationsController.php?id_active=" + user_id + "&loc_name=" + input + "&prevLoc=" + prevLoc + "&action=save_edit", true);
-	    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	    xmlhttp.send("loc_name=" + input);
-    }
-
-	xmlhttp.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                location.reload();
-            }
-        }
 }

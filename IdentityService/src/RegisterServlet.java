@@ -98,7 +98,6 @@ public class RegisterServlet extends HttpServlet {
             }
         } catch ( ClassNotFoundException | IllegalAccessException | InstantiationException |
                 SQLException | JSONException theException) {
-            //arrayObj.put("kevin", theException);
             System.out.println("Register failed: An Exception has occurred! " + theException);
         } finally {
             if (Con != null) {

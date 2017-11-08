@@ -7,34 +7,22 @@
   Time: 5:33
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-<%--<%@include file="UserController.jsp"%>--%>
 <%  application.setAttribute( "currentPage", "order");
     application.setAttribute("currentSubPage","destination");
 
     HttpSession sesi = request.getSession();
-    sesi.setAttribute("token","dummy"); /* need to be replaced */
-    sesi.setAttribute("userId", "0"); /* need to be replaced */
 
-    String token = sesi.getAttribute("token").toString();
-    if (token == null) {
-        response.sendRedirect("login.jsp");
-    }
     if (request.getParameter("submit") != null) {
         String pickingPoint = request.getParameter("picking_point");
         String destination = request.getParameter("destination");
         String preferredDriver = request.getParameter("preferred_driver");
         OrderGojekService service = new OrderGojekService();
         OrderGojek port = service.getOrderGojekPort();
-        boolean result = port.checkExpiryTime(token);
-        if (!result) {
-            sesi.setAttribute("pickingPoint", pickingPoint);
-            sesi.setAttribute("destination", destination);
-            sesi.setAttribute("preferredDriver", preferredDriver);
-            response.sendRedirect("order_select_driver.jsp");
-        } else {
-            response.sendRedirect("login.jsp");
-        }
+
+        sesi.setAttribute("pickingPoint", pickingPoint);
+        sesi.setAttribute("destination", destination);
+        sesi.setAttribute("preferredDriver", preferredDriver);
+        response.sendRedirect("order_select_driver.jsp");
     }
 %>
 
@@ -52,9 +40,7 @@
 
 <div class="container">
     <%@include file="order_header.jsp"%>
-    <%--action="order_select_driver.jsp" onsubmit="return validateOrder()"--%>
-    <form action="#" onsubmit="" method="get">
-        <%--<input type="hidden" id="id_active" name="id_active" value="<?php echo $user->id;?>">--%>
+    <form action="" onsubmit="return validateOrder()" method="get">
         <table class="table-select_destination dark-grey">
             <tr>
                 <td>

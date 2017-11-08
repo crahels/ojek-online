@@ -28,37 +28,18 @@ public interface OrderGojek {
 
     /**
      * 
-     * @param arg3
-     * @param arg2
-     * @param arg4
-     * @param arg1
      * @param arg0
      * @return
-     *     returns java.util.List<example.Driver>
-     * @throws IllegalAccessException_Exception
-     * @throws ParseException_Exception
+     *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getPreferredDrivers", targetNamespace = "http://example/", className = "example.GetPreferredDrivers")
-    @ResponseWrapper(localName = "getPreferredDriversResponse", targetNamespace = "http://example/", className = "example.GetPreferredDriversResponse")
-    @Action(input = "http://example/OrderGojek/getPreferredDriversRequest", output = "http://example/OrderGojek/getPreferredDriversResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/OrderGojek/getPreferredDrivers/Fault/IllegalAccessException"),
-        @FaultAction(className = ParseException_Exception.class, value = "http://example/OrderGojek/getPreferredDrivers/Fault/ParseException")
-    })
-    public List<Driver> getPreferredDrivers(
+    @RequestWrapper(localName = "checkExpiryTime", targetNamespace = "http://example/", className = "example.CheckExpiryTime")
+    @ResponseWrapper(localName = "checkExpiryTimeResponse", targetNamespace = "http://example/", className = "example.CheckExpiryTimeResponse")
+    @Action(input = "http://example/OrderGojek/checkExpiryTimeRequest", output = "http://example/OrderGojek/checkExpiryTimeResponse")
+    public boolean checkExpiryTime(
         @WebParam(name = "arg0", targetNamespace = "")
-        boolean arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        String arg4)
-        throws IllegalAccessException_Exception, ParseException_Exception
-    ;
+        String arg0);
 
     /**
      * 
@@ -94,17 +75,36 @@ public interface OrderGojek {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg4
+     * @param arg1
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns java.util.List<example.Driver>
+     * @throws IllegalAccessException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkExpiryTime", targetNamespace = "http://example/", className = "example.CheckExpiryTime")
-    @ResponseWrapper(localName = "checkExpiryTimeResponse", targetNamespace = "http://example/", className = "example.CheckExpiryTimeResponse")
-    @Action(input = "http://example/OrderGojek/checkExpiryTimeRequest", output = "http://example/OrderGojek/checkExpiryTimeResponse")
-    public boolean checkExpiryTime(
+    @RequestWrapper(localName = "getPreferredDrivers", targetNamespace = "http://example/", className = "example.GetPreferredDrivers")
+    @ResponseWrapper(localName = "getPreferredDriversResponse", targetNamespace = "http://example/", className = "example.GetPreferredDriversResponse")
+    @Action(input = "http://example/OrderGojek/getPreferredDriversRequest", output = "http://example/OrderGojek/getPreferredDriversResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/OrderGojek/getPreferredDrivers/Fault/IllegalAccessException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/OrderGojek/getPreferredDrivers/Fault/ParseException")
+    })
+    public List<Driver> getPreferredDrivers(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        boolean arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        String arg4)
+        throws IllegalAccessException_Exception, ParseException_Exception
+    ;
 
 }

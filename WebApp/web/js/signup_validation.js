@@ -32,11 +32,7 @@ function validateSignUp() {
         if(errorMessage != "") {
             errorMessage += "\n";
         }
-        if(isEmailUsed) {
-            errorMessage += "Email is already used.";
-        } else {
-            errorMessage += "Invalid email address.";
-        }
+        errorMessage += "Invalid email address.";
     }
 
     if(!isUsernameValid) {
@@ -45,14 +41,6 @@ function validateSignUp() {
             errorMessage += "\n";
         }
         errorMessage += "Invalid username, maximum length is 20 characters.";
-    } else {
-        if(isUsernameUsed) {
-            error = true;
-            if(errorMessage != "") {
-                errorMessage += "\n";
-            }
-            errorMessage += "Username is already used.";
-        }
     }
 
     if(!validatePassword()) {
@@ -81,34 +69,9 @@ function validateSignUp() {
 function validateUsername() {
     var username = document.getElementById("username").value;
     if(username == "" || username.length > 20) {
-        isUsernameUsed = false;
-        if (username.length > 20) {
-            isUsernameValid = false;
-        } else {
-            isUsernameValid = true;
-        }
-        document.getElementById("username_result").innerHTML= "&#10005";
-        document.getElementById("username_result").style.color = "red";
+        isUsernameValid = false;
     } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                if(this.responseText == "valid") {
-                    isUsernameUsed = false;
-                    isUsernameValid = true;
-                    document.getElementById("username_result").innerHTML= "&#10003";
-                    document.getElementById("username_result").style.color = "#03702c";
-                } else {
-                    isUsernameValid = true;
-                    isUsernameUsed = true;
-                    document.getElementById("username_result").innerHTML= "&#10005";
-                    document.getElementById("username_result").style.color = "red";
-                }
-            }
-        };
-        xmlhttp.open("POST", "/TugasBesar1_2017/controller/ValidationController.php?validate=username", true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlhttp.send("username=" + username);
+        isUsernameValid = true;
     }
 }
 
@@ -117,31 +80,9 @@ function validateEmail() {
     var email = document.getElementById("email").value;
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(regex.test(email)) {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                if(this.responseText == "valid") {
-                    isEmailUsed = false;
-                    isEmailValid = true;
-                    document.getElementById("email_result").innerHTML= "&#10003";
-                    document.getElementById("email_result").style.color = "#03702c";
-                } else {
-                    isEmailUsed = true;
-                    isEmailValid = false;
-                    document.getElementById("email_result").innerHTML= "&#10005";
-                    document.getElementById("email_result").style.color = "red";
-                }
-            }
-        };
-        xmlhttp.open("POST", "/TugasBesar1_2017/controller/ValidationController.php?validate=email", true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlhttp.send("email=" + email);
-
+        isEmailValid = true;
     } else {
-        isEmailUsed = false;
         isEmailValid = false;
-        document.getElementById("email_result").innerHTML= "&#10005";
-        document.getElementById("email_result").style.color = "red";
     }
 }
 

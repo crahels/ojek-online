@@ -12,27 +12,24 @@
 <%
     application.setAttribute("currentPage","order");
     application.setAttribute("currentSubPage","complete");
-
     HttpSession sesi = request.getSession();
-    String token;
-    sesi.setAttribute("token","dummy"); /* need to be replaced */
-    token = sesi.getAttribute("token").toString();
-    if (token == null) {
-        response.sendRedirect("login.jsp");
-    }
+    int userId;
+    String pickingPoint;
+    String destination;
+    String preferredDriver;
+    String driverName;
+    int driverId;
+    if (sesi.getAttribute("token") != null) {
+        userId = Integer.parseInt(sesi.getAttribute("userId").toString());
+        pickingPoint = request.getParameter("pickingPoint");
+        destination = request.getParameter("destination");
+        preferredDriver = request.getParameter("preferredDriver");
+        driverName = request.getParameter("userName");
+        driverId = Integer.parseInt(request.getParameter("driverId"));
 
-    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-    String pickingPoint = request.getParameter("pickingPoint");
-    String destination = request.getParameter("destination");
-    String preferredDriver = request.getParameter("preferredDriver");
-    String driverName = request.getParameter("userName");
-    int driverId = Integer.parseInt(request.getParameter("driverId"));
+        OrderGojekService service = new OrderGojekService();
+        OrderGojek port = service.getOrderGojekPort();
 
-    OrderGojekService service = new OrderGojekService();
-    OrderGojek port = service.getOrderGojekPort();
-
-    boolean result = port.checkExpiryTime(token);
-    if (!result) {
         try {
             if (request.getParameter("complete") != null) {
                 int rating = Integer.parseInt(request.getParameter("star"));
@@ -44,7 +41,12 @@
             e.printStackTrace();
         }
     } else {
-        response.sendRedirect("login.jsp");
+        userId = -1;
+        pickingPoint = "";
+        destination = "";
+        preferredDriver = "";
+        driverName = "";
+        driverId = -1;
     }
 %>
 
@@ -59,12 +61,11 @@
 </head>
 
 <%@include file="header.jsp"%>
-
 <body>
 <div class="container">
     <%@include file="order_header.jsp"%>
     <h3>How Was It?</h3>
-    <img src="images/profile/default.png" class="img-circle"></img>
+    <img src="images/profile/<%=userId%>.png" alt='DRIVER PICTURE' class="img-circle"></img>
     <p class="username-driver">@<% out.print(preferredDriver); %></p>
     <p class="name-driver"><% out.print(driverName); %></p>
 

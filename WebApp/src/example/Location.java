@@ -43,18 +43,43 @@ public interface Location {
 
     /**
      * 
+     * @param arg1
      * @param arg0
-     * @return
-     *     returns java.util.List<java.lang.String>
+     * @throws IllegalAccessException_Exception
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getUserLocation", targetNamespace = "http://example/", className = "example.GetUserLocation")
-    @ResponseWrapper(localName = "getUserLocationResponse", targetNamespace = "http://example/", className = "example.GetUserLocationResponse")
-    @Action(input = "http://example/Location/getUserLocationRequest", output = "http://example/Location/getUserLocationResponse")
-    public List<String> getUserLocation(
+    @RequestWrapper(localName = "addLocation", targetNamespace = "http://example/", className = "example.AddLocation")
+    @ResponseWrapper(localName = "addLocationResponse", targetNamespace = "http://example/", className = "example.AddLocationResponse")
+    @Action(input = "http://example/Location/addLocationRequest", output = "http://example/Location/addLocationResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/addLocation/Fault/IllegalAccessException")
+    })
+    public void addLocation(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1)
+        throws IllegalAccessException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @throws IllegalAccessException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteLocation", targetNamespace = "http://example/", className = "example.DeleteLocation")
+    @ResponseWrapper(localName = "deleteLocationResponse", targetNamespace = "http://example/", className = "example.DeleteLocationResponse")
+    @Action(input = "http://example/Location/deleteLocationRequest", output = "http://example/Location/deleteLocationResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/deleteLocation/Fault/IllegalAccessException")
+    })
+    public void deleteLocation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1)
+        throws IllegalAccessException_Exception
+    ;
 
     /**
      * 
@@ -81,42 +106,17 @@ public interface Location {
 
     /**
      * 
-     * @param arg1
      * @param arg0
-     * @throws IllegalAccessException_Exception
+     * @return
+     *     returns java.util.List<java.lang.String>
      */
     @WebMethod
-    @RequestWrapper(localName = "deleteLocation", targetNamespace = "http://example/", className = "example.DeleteLocation")
-    @ResponseWrapper(localName = "deleteLocationResponse", targetNamespace = "http://example/", className = "example.DeleteLocationResponse")
-    @Action(input = "http://example/Location/deleteLocationRequest", output = "http://example/Location/deleteLocationResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/deleteLocation/Fault/IllegalAccessException")
-    })
-    public void deleteLocation(
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getUserLocation", targetNamespace = "http://example/", className = "example.GetUserLocation")
+    @ResponseWrapper(localName = "getUserLocationResponse", targetNamespace = "http://example/", className = "example.GetUserLocationResponse")
+    @Action(input = "http://example/Location/getUserLocationRequest", output = "http://example/Location/getUserLocationResponse")
+    public List<String> getUserLocation(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1)
-        throws IllegalAccessException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @throws IllegalAccessException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "addLocation", targetNamespace = "http://example/", className = "example.AddLocation")
-    @ResponseWrapper(localName = "addLocationResponse", targetNamespace = "http://example/", className = "example.AddLocationResponse")
-    @Action(input = "http://example/Location/addLocationRequest", output = "http://example/Location/addLocationResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/addLocation/Fault/IllegalAccessException")
-    })
-    public void addLocation(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1)
-        throws IllegalAccessException_Exception
-    ;
+        int arg0);
 
 }

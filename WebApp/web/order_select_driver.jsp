@@ -15,12 +15,6 @@
     application.setAttribute("currentSubPage","driver");
 
     HttpSession sesi = request.getSession();
-    sesi.setAttribute("token","dummy"); /* need to be replaced */
-    String token = sesi.getAttribute("token").toString();
-    if (token == null) {
-        response.sendRedirect("login.jsp");
-    }
-
     int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
     String pickingPoint = sesi.getAttribute("pickingPoint").toString();
     String destination = sesi.getAttribute("destination").toString();
@@ -30,21 +24,17 @@
     OrderGojek port = service.getOrderGojekPort();
     java.util.List<example.Driver> driver = null;
     java.util.List<example.Driver> otherDriver = null;
-    boolean result = port.checkExpiryTime(token);
-    if (!result) {
-        try {
-            driver = port.getPreferredDrivers(true, userId, pickingPoint, destination, preferredDriver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            otherDriver = port.getPreferredDrivers(false, userId, pickingPoint, destination, preferredDriver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } else {
-        response.sendRedirect("login.jsp");
+    try {
+        driver = port.getPreferredDrivers(true, userId, pickingPoint, destination, preferredDriver);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    try {
+        otherDriver = port.getPreferredDrivers(false, userId, pickingPoint, destination, preferredDriver);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
 %>
 
 <!DOCTYPE html>

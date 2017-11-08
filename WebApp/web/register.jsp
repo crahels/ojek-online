@@ -39,7 +39,7 @@
             isDriver = "1";
         }
         String USER_AGENT = "Mozilla/5.0";
-        String url = "http://localhost:8003/register";
+        String url = "http://localhost:8001/register";
         URL connection = new URL(url);
         HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 
@@ -107,8 +107,8 @@
                 errorMessage= "Failed to insert data, server may be busy, please try again later";
                 out.println("<script>alert('" + errorMessage + "')</script>");
             }
-        } else {
-            errorMessage= "USERNAME NOT VALID";
+        } else if (valid.equals("no")) {
+            errorMessage= "USERNAME OR EMAIL IS NOT VALID";
             out.println("<script>alert('" + errorMessage + "')</script>");
         }
     }
@@ -119,8 +119,8 @@
     <meta charset="UTF-8">
     <title>Sign Up - PR-OJEK</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -130,7 +130,7 @@
             <hr class="left"/>Sign Up<hr class="right"/>
         </div>
 
-        <form  class="form-signup" action="" onsubmit="" method="post">
+        <form  class="form-signup" action="" onsubmit="return validateSignUp()" method="post">
 
             <%--@declare id="phone number"--%>
             <label for="name">Your Name</label>
@@ -166,6 +166,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="../assets/js/signup_validation.js"></script>
+<script type="text/javascript" src="js/signup_validation.js"></script>
 </body>
 </html>

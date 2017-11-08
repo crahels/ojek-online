@@ -15,58 +15,57 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     HttpSession sesion = request.getSession();
-    String tokenn = sesion.getAttribute("token").toString();
-    String usernamee = sesion.getAttribute("username").toString();
-    sesion.setAttribute("token",tokenn);
-    if (tokenn == null) {
+    String usernamee;
+    if (sesion.getAttribute("token") == null) {
         response.sendRedirect("login.jsp");
-    }
-    if(request.getParameter("logout") != null) {
-        String USER_AGENT = "Mozilla/5.0";
-        String url = "http://localhost:8003/logout";
-        URL connection = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) connection.openConnection();
+        usernamee = "";
+    } else {
+        String tokenn = sesion.getAttribute("token").toString();
+        usernamee = sesion.getAttribute("username").toString();
+        if(request.getParameter("logout") != null) {
+            String USER_AGENT = "Mozilla/5.0";
+            String url = "http://localhost:8001/logout";
+            URL connection = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 
-        //add reuqest header
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            //add reuqest header
+            con.setRequestMethod("POST");
+            con.setRequestProperty("User-Agent", USER_AGENT);
+            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        String urlParameters = "token="+tokenn;
+            String urlParameters = "token="+tokenn;
 
-        // Send post request
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
-        wr.flush();
-        wr.close();
+            // Send post request
+            con.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.writeBytes(urlParameters);
+            wr.flush();
+            wr.close();
 
-        int responseCode = con.getResponseCode();
+            int responseCode = con.getResponseCode();
 
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder resp = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            resp.append(inputLine);
-        }
-        in.close();
-        con.disconnect();
-        JSONParser parser = new JSONParser();
-        JSONObject obj = (JSONObject) parser.parse(resp.toString());
-        String status= (String) obj.get("status");
-        String dikaanjing = (String) obj.get("dika");
-        if(dikaanjing != null) {
-            out.println(dikaanjing);
-        }
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder resp = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                resp.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+            JSONParser parser = new JSONParser();
+            JSONObject obj = (JSONObject) parser.parse(resp.toString());
+            String status= (String) obj.get("status");
 
-        if(status.equals("ok")){
-            response.sendRedirect("login.jsp");
-        }
-        else {
-            out.println(status);
-            out.println("<script>alert('Logout Failed')</script>");
-            response.sendRedirect("login.jsp");
+            if(status.equals("ok")){
+                response.sendRedirect("login.jsp");
+                sesion.invalidate();
+            }
+            else {
+                out.println(status);
+                out.println("<script>alert('Logout Failed')</script>");
+                response.sendRedirect("login.jsp");
+            }
         }
     }
 %>

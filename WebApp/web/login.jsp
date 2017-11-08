@@ -13,20 +13,19 @@
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="java.net.HttpURLConnection"%>
 <%@page import="java.net.URL"%>
+
 <%
     HttpSession sesi = request.getSession();
-%>
-<%
     String username;
     String password;
     String errorMessage="";
 
-    if(request.getParameter("login")!=null) {
+    if(request.getParameter("login")!= null) {
         username = request.getParameter("username");
         password = request.getParameter("password");
 
         String USER_AGENT = "Mozilla/5.0";
-        String url = "http://localhost:8003/login";
+        String url = "http://localhost:8001/login";
         URL connection = new URL(url);
         HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 
@@ -90,7 +89,7 @@
             }
         }
         else {
-            errorMessage= "USERNAME NOT VALID";
+            errorMessage= "USERNAME IS NOT VALID";
             out.println("<script>alert('" + errorMessage + "')</script>");
         }
     }
@@ -113,7 +112,7 @@
             <hr class="left"/>Login<hr class="right"/>
         </div>
 
-        <form  class="form-login" action="" onsubmit="" method="post">
+        <form  class="form-login" action="" onsubmit="return validateLogin()" method="post">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
 

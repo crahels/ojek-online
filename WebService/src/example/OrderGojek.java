@@ -184,8 +184,7 @@ public class OrderGojek {
                             rating = rs2.getFloat("ratings");
                             vote = rs2.getInt("votes");
                         }
-                        driverList.add(Driver.setDriverParam(x.getUserId(), x.getUserName(), x.getUserUsername(),
-                                "default.png", vote, rating));
+                        driverList.add(Driver.setDriverParam(x.getUserId(), x.getUserName(), x.getUserUsername(), x.getUserId() + ".png", vote, rating));
                         rs2.close();
                         stmt2.close();
                     }

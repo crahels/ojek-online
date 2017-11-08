@@ -28,21 +28,6 @@ public interface OrderGojek {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkExpiryTime", targetNamespace = "http://example/", className = "example.CheckExpiryTime")
-    @ResponseWrapper(localName = "checkExpiryTimeResponse", targetNamespace = "http://example/", className = "example.CheckExpiryTimeResponse")
-    @Action(input = "http://example/OrderGojek/checkExpiryTimeRequest", output = "http://example/OrderGojek/checkExpiryTimeResponse")
-    public boolean checkExpiryTime(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
      * @param arg3
      * @param arg2
      * @param arg5
@@ -82,8 +67,8 @@ public interface OrderGojek {
      * @param arg0
      * @return
      *     returns java.util.List<example.Driver>
-     * @throws IllegalAccessException_Exception
      * @throws ParseException_Exception
+     * @throws IllegalAccessException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

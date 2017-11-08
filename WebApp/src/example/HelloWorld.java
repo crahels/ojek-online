@@ -7,6 +7,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -28,15 +29,22 @@ public interface HelloWorld {
      * 
      * @param arg0
      * @return
-     *     returns java.lang.String
+     *     returns int
+     * @throws IOException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "sayHelloWorldFrom", targetNamespace = "http://example/", className = "example.SayHelloWorldFrom")
-    @ResponseWrapper(localName = "sayHelloWorldFromResponse", targetNamespace = "http://example/", className = "example.SayHelloWorldFromResponse")
-    @Action(input = "http://example/HelloWorld/sayHelloWorldFromRequest", output = "http://example/HelloWorld/sayHelloWorldFromResponse")
-    public String sayHelloWorldFrom(
+    @RequestWrapper(localName = "expiryTime", targetNamespace = "http://example/", className = "example.ExpiryTime")
+    @ResponseWrapper(localName = "expiryTimeResponse", targetNamespace = "http://example/", className = "example.ExpiryTimeResponse")
+    @Action(input = "http://example/HelloWorld/expiryTimeRequest", output = "http://example/HelloWorld/expiryTimeResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://example/HelloWorld/expiryTime/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/HelloWorld/expiryTime/Fault/ParseException")
+    })
+    public int expiryTime(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0)
+        throws IOException_Exception, ParseException_Exception
+    ;
 
 }

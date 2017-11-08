@@ -37,22 +37,22 @@ public class ValidateTokenServlet extends HttpServlet {
                     long time = expiry_time.getTimeInMillis();
                     long now = Calendar.getInstance().getTimeInMillis();
                     if(now < time) {
-                        arrayObj.put("token_auth", "SUCCESS");
-
+                        arrayObj.put("token_auth", "VALID");
                         String query = "SELECT * FROM user_info WHERE user_id = '" + id + "';";
                         Statement stmt = Con.createStatement();
                         ResultSet rs1 = stmt.executeQuery(query);
 
-
-                        String name = rs1.getString("user_name");
-                        String phone = rs1.getString("user_phone");
-                        String status = rs1.getString("user_status");
-                        String email = rs1.getString("user_email");
-                        arrayObj.put("id", id);
-                        arrayObj.put("user_name", name);
-                        arrayObj.put("user_phone", phone);
-                        arrayObj.put("user_status", status);
-                        arrayObj.put("user_email", email);
+                        if (rs1.next()) {
+                            String name = rs1.getString("user_name");
+                            String phone = rs1.getString("user_phone");
+                            String status = rs1.getString("user_status");
+                            String email = rs1.getString("user_email");
+                            arrayObj.put("id", id);
+                            arrayObj.put("user_name", name);
+                            arrayObj.put("user_phone", phone);
+                            arrayObj.put("user_status", status);
+                            arrayObj.put("user_email", email);
+                        }
                     }
                     else {
                         Statement stmt = Con.createStatement();
@@ -61,7 +61,7 @@ public class ValidateTokenServlet extends HttpServlet {
                     }
                 }
                 else{
-                    arrayObj.put("token_auth", "FAIL");
+                    arrayObj.put("token_auth", "INVALID");
                 }
                 resp.setContentType("application/json:charset=UTF-8");
                 resp.getWriter().write(arrayObj.toString());

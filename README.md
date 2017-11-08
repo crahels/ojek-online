@@ -8,7 +8,7 @@ Pada Tugas Besar 2 WBD, kami melakukan *upgrade* Website ojek online sederhana p
 * Membuat web application dengan menggunakan JSP yang akan memanggil web services dengan SOAP (dengan JAX-WS) dan REST (dengan Servlet).
 
 ## Anggota Tim
-Berikut ini adalah anggota dari tim pengembangan website ini:
+Berikut ini adalah anggota dari tim pengembangan aplikasi berbasis web ini:
 1. Kevin Iswara - 13515085
 2. Aditya Pratama - 13515103 
 3. Rachel Sidney Devianti - 13515124
@@ -113,14 +113,15 @@ Berikut ini adalah kelemahan dari arsitektur server yang dibangun:
 
 ## Pembagian Tugas
 Berikut ini adalah pembagian tugas di kelompok kami:
+
 REST :
-1. History                 : 13515085 
-2. Login                    : 13515085, 13515103 
-3. Logout                   : 13515085, 13515103
-4. OrderDriver              : 13515124
-5. Register                 : 13515085, 13515103
-6. ValidateToken            : 13515085, 13515124
-7. Profile                  : 13515103
+1. HistoryServlet           : 13515085 
+2. LoginServlet             : 13515085, 13515103 
+3. LogoutServlet            : 13515085, 13515103
+4. OrderDriverServlet       : 13515124
+5. RegisterServlet          : 13515085, 13515103
+6. ValidateTokenServlet     : 13515085, 13515124
+7. ProfileServlet           : 13515103
 
 SOAP :
 1. HistoryGojek             : 13515085

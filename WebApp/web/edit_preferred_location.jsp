@@ -1,6 +1,4 @@
-<%@ page import="example.LocationService" %>
-<%@ page import="example.Location" %>
-<%@ page import="example.IllegalAccessException_Exception" %>
+<%@ page import="example.*" %>
 <%--
   Created by IntelliJ IDEA.
   User: Rachel
@@ -20,6 +18,22 @@
     java.util.List<String> locs = null;
     if (sesi.getAttribute("token") != null) {
         String token = sesi.getAttribute("token").toString();
+        HelloWorldService servis = new HelloWorldService();
+        HelloWorld prt = servis.getHelloWorldPort();
+        try {
+            if (prt.expiryTime(token) == 0) { // invalid
+                out.print("<script>alert('INVALID ACCESS');" +
+                        "window.location = 'login.jsp';</script>");
+            } else if (prt.expiryTime(token) == 2) { // expired
+                out.print("<script>alert('EXPIRED ACCESS');" +
+                        "window.location = 'login.jsp';</script>");
+            }
+        } catch (IOException_Exception e) {
+            e.printStackTrace();
+        } catch (ParseException_Exception e) {
+            e.printStackTrace();
+        }
+
         userId = Integer.parseInt(sesi.getAttribute("userId").toString());
         try {
             locs = port.getUserLocation(userId);

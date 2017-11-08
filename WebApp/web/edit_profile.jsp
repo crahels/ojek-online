@@ -22,6 +22,22 @@
     int userId;
     example.User userOjek = new User();;
     if (sesi.getAttribute("token") != null) {
+        token = sesi.getAttribute("token").toString();
+        HelloWorldService servis = new HelloWorldService();
+        HelloWorld prt = servis.getHelloWorldPort();
+        try {
+            if (prt.expiryTime(token) == 0) { // invalid
+                out.print("<script>alert('INVALID ACCESS');" +
+                        "window.location = 'login.jsp';</script>");
+            } else if (prt.expiryTime(token) == 2) { // expired
+                out.print("<script>alert('EXPIRED ACCESS');" +
+                        "window.location = 'login.jsp';</script>");
+            }
+        } catch (IOException_Exception e) {
+            e.printStackTrace();
+        } catch (ParseException_Exception e) {
+            e.printStackTrace();
+        }
         userId = Integer.parseInt(sesi.getAttribute("userId").toString());
         java.util.List<example.User> userList = null;
         //java.util.List<example.Driver> driverList = null;

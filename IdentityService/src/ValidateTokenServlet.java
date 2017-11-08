@@ -55,8 +55,8 @@ public class ValidateTokenServlet extends HttpServlet {
                         }
                     }
                     else {
-                        Statement stmt = Con.createStatement();
-                        stmt.executeUpdate("DELETE FROM user WHERE  user_token = '" + token + "';");
+                        /*Statement stmt = Con.createStatement();
+                        stmt.executeUpdate("DELETE FROM user WHERE  user_token = '" + token + "';");*/
                         arrayObj.put("token_auth", "EXPIRED");
                     }
                 }

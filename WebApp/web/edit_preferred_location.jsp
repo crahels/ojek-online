@@ -19,6 +19,7 @@
     int userId;
     java.util.List<String> locs = null;
     if (sesi.getAttribute("token") != null) {
+        String token = sesi.getAttribute("token").toString();
         userId = Integer.parseInt(sesi.getAttribute("userId").toString());
         try {
             locs = port.getUserLocation(userId);
@@ -29,21 +30,25 @@
             String locName = request.getParameter("loc_name");
             if (locName != "") {
                 try {
-                    port.addLocation(userId, locName);
+                    boolean result = port.addLocation(token, userId, locName);
+                    if (result) {
+                        response.sendRedirect("edit_preferred_location.jsp");
+                    }
                 } catch (IllegalAccessException_Exception e) {
                     e.printStackTrace();
                 }
-                response.sendRedirect("edit_preferred_location.jsp");
             }
         }
         if (request.getParameter("delete") != null) {
             String locName = request.getParameter("delete");
             try {
-                port.deleteLocation(userId, locName);
+                boolean result = port.deleteLocation(token, userId, locName);
+                if (result) {
+                    response.sendRedirect("edit_preferred_location.jsp");
+                }
             } catch (IllegalAccessException_Exception e) {
                 e.printStackTrace();
             }
-            response.sendRedirect("edit_preferred_location.jsp");
         }
     }
     else {
@@ -120,8 +125,11 @@
                 "document.getElementById('" + oldName + "edit').className='pencil orange left';\n" +
                 "</script>");
         try {
-            port.saveLocation(userId, oldName, newName);
-            response.sendRedirect("edit_preferred_location.jsp");
+            String token = sesi.getAttribute("token").toString();
+            boolean result = port.saveLocation(token, userId, oldName, newName);
+            if (result) {
+                response.sendRedirect("edit_preferred_location.jsp");
+            }
         } catch (IllegalAccessException_Exception e) {
             e.printStackTrace();
         }

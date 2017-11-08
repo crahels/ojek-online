@@ -28,34 +28,66 @@ public interface OrderGojek {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns int
+     * @throws ParseException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "expiryTime", targetNamespace = "http://example/", className = "example.ExpiryTime")
+    @ResponseWrapper(localName = "expiryTimeResponse", targetNamespace = "http://example/", className = "example.ExpiryTimeResponse")
+    @Action(input = "http://example/OrderGojek/expiryTimeRequest", output = "http://example/OrderGojek/expiryTimeResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://example/OrderGojek/expiryTime/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/OrderGojek/expiryTime/Fault/ParseException")
+    })
+    public int expiryTime(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws IOException_Exception, ParseException_Exception
+    ;
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg5
      * @param arg4
      * @param arg1
      * @param arg0
+     * @param arg6
+     * @return
+     *     returns boolean
      * @throws IllegalAccessException_Exception
+     * @throws ParseException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "addOrderToDatabase", targetNamespace = "http://example/", className = "example.AddOrderToDatabase")
     @ResponseWrapper(localName = "addOrderToDatabaseResponse", targetNamespace = "http://example/", className = "example.AddOrderToDatabaseResponse")
     @Action(input = "http://example/OrderGojek/addOrderToDatabaseRequest", output = "http://example/OrderGojek/addOrderToDatabaseResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/OrderGojek/addOrderToDatabase/Fault/IllegalAccessException")
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/OrderGojek/addOrderToDatabase/Fault/IllegalAccessException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://example/OrderGojek/addOrderToDatabase/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/OrderGojek/addOrderToDatabase/Fault/ParseException")
     })
-    public void addOrderToDatabase(
+    public boolean addOrderToDatabase(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        int arg2,
+        String arg2,
         @WebParam(name = "arg3", targetNamespace = "")
         int arg3,
         @WebParam(name = "arg4", targetNamespace = "")
         int arg4,
         @WebParam(name = "arg5", targetNamespace = "")
-        String arg5)
-        throws IllegalAccessException_Exception
+        int arg5,
+        @WebParam(name = "arg6", targetNamespace = "")
+        String arg6)
+        throws IOException_Exception, IllegalAccessException_Exception, ParseException_Exception
     ;
 
     /**
@@ -67,8 +99,8 @@ public interface OrderGojek {
      * @param arg0
      * @return
      *     returns java.util.List<example.Driver>
-     * @throws ParseException_Exception
      * @throws IllegalAccessException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

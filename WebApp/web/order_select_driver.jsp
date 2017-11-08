@@ -25,6 +25,7 @@
     java.util.List<example.Driver> driver = null;
     java.util.List<example.Driver> otherDriver = null;
     if (sesi.getAttribute("token") != null) {
+        String token = sesi.getAttribute("token").toString();
         userId = Integer.parseInt(sesi.getAttribute("userId").toString());
         pickingPoint = sesi.getAttribute("pickingPoint").toString();
         destination = sesi.getAttribute("destination").toString();

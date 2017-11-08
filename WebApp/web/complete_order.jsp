@@ -20,6 +20,7 @@
     String driverName;
     int driverId;
     if (sesi.getAttribute("token") != null) {
+        String token = sesi.getAttribute("token").toString();
         userId = Integer.parseInt(sesi.getAttribute("userId").toString());
         pickingPoint = request.getParameter("pickingPoint");
         destination = request.getParameter("destination");
@@ -34,8 +35,10 @@
             if (request.getParameter("complete") != null) {
                 int rating = Integer.parseInt(request.getParameter("star"));
                 String comment = request.getParameter("comment");
-                port.addOrderToDatabase(pickingPoint, destination, userId, driverId, rating, comment);
-                response.sendRedirect("order_gojek.jsp");
+                boolean result = port.addOrderToDatabase(token, pickingPoint, destination, userId, driverId, rating, comment);
+                if (result) {
+                    response.sendRedirect("order_gojek.jsp");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

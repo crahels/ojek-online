@@ -24,11 +24,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
-    private final static QName _AddOrderToDatabaseResponse_QNAME = new QName("http://example/", "addOrderToDatabaseResponse");
-    private final static QName _GetPreferredDriversResponse_QNAME = new QName("http://example/", "getPreferredDriversResponse");
-    private final static QName _AddOrderToDatabase_QNAME = new QName("http://example/", "addOrderToDatabase");
-    private final static QName _GetPreferredDrivers_QNAME = new QName("http://example/", "getPreferredDrivers");
+    private final static QName _ExpiryTimeResponse_QNAME = new QName("http://example/", "expiryTimeResponse");
+    private final static QName _ExpiryTime_QNAME = new QName("http://example/", "expiryTime");
+    private final static QName _IOException_QNAME = new QName("http://example/", "IOException");
     private final static QName _ParseException_QNAME = new QName("http://example/", "ParseException");
 
     /**
@@ -39,19 +37,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddOrderToDatabase }
+     * Create an instance of {@link ExpiryTime }
      * 
      */
-    public AddOrderToDatabase createAddOrderToDatabase() {
-        return new AddOrderToDatabase();
+    public ExpiryTime createExpiryTime() {
+        return new ExpiryTime();
     }
 
     /**
-     * Create an instance of {@link GetPreferredDrivers }
+     * Create an instance of {@link IOException }
      * 
      */
-    public GetPreferredDrivers createGetPreferredDrivers() {
-        return new GetPreferredDrivers();
+    public IOException createIOException() {
+        return new IOException();
     }
 
     /**
@@ -63,80 +61,38 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IllegalAccessException }
+     * Create an instance of {@link ExpiryTimeResponse }
      * 
      */
-    public IllegalAccessException createIllegalAccessException() {
-        return new IllegalAccessException();
+    public ExpiryTimeResponse createExpiryTimeResponse() {
+        return new ExpiryTimeResponse();
     }
 
     /**
-     * Create an instance of {@link AddOrderToDatabaseResponse }
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryTimeResponse }{@code >}}
      * 
      */
-    public AddOrderToDatabaseResponse createAddOrderToDatabaseResponse() {
-        return new AddOrderToDatabaseResponse();
+    @XmlElementDecl(namespace = "http://example/", name = "expiryTimeResponse")
+    public JAXBElement<ExpiryTimeResponse> createExpiryTimeResponse(ExpiryTimeResponse value) {
+        return new JAXBElement<ExpiryTimeResponse>(_ExpiryTimeResponse_QNAME, ExpiryTimeResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link GetPreferredDriversResponse }
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryTime }{@code >}}
      * 
      */
-    public GetPreferredDriversResponse createGetPreferredDriversResponse() {
-        return new GetPreferredDriversResponse();
+    @XmlElementDecl(namespace = "http://example/", name = "expiryTime")
+    public JAXBElement<ExpiryTime> createExpiryTime(ExpiryTime value) {
+        return new JAXBElement<ExpiryTime>(_ExpiryTime_QNAME, ExpiryTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link Driver }
+     * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}}
      * 
      */
-    public Driver createDriver() {
-        return new Driver();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IllegalAccessException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "IllegalAccessException")
-    public JAXBElement<IllegalAccessException> createIllegalAccessException(IllegalAccessException value) {
-        return new JAXBElement<IllegalAccessException>(_IllegalAccessException_QNAME, IllegalAccessException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabaseResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabaseResponse")
-    public JAXBElement<AddOrderToDatabaseResponse> createAddOrderToDatabaseResponse(AddOrderToDatabaseResponse value) {
-        return new JAXBElement<AddOrderToDatabaseResponse>(_AddOrderToDatabaseResponse_QNAME, AddOrderToDatabaseResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDriversResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "getPreferredDriversResponse")
-    public JAXBElement<GetPreferredDriversResponse> createGetPreferredDriversResponse(GetPreferredDriversResponse value) {
-        return new JAXBElement<GetPreferredDriversResponse>(_GetPreferredDriversResponse_QNAME, GetPreferredDriversResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabase }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabase")
-    public JAXBElement<AddOrderToDatabase> createAddOrderToDatabase(AddOrderToDatabase value) {
-        return new JAXBElement<AddOrderToDatabase>(_AddOrderToDatabase_QNAME, AddOrderToDatabase.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDrivers }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://example/", name = "getPreferredDrivers")
-    public JAXBElement<GetPreferredDrivers> createGetPreferredDrivers(GetPreferredDrivers value) {
-        return new JAXBElement<GetPreferredDrivers>(_GetPreferredDrivers_QNAME, GetPreferredDrivers.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "IOException")
+    public JAXBElement<IOException> createIOException(IOException value) {
+        return new JAXBElement<IOException>(_IOException_QNAME, IOException.class, null, value);
     }
 
     /**

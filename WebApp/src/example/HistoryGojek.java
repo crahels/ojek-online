@@ -30,26 +30,33 @@ public interface HistoryGojek {
      * 
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns int
+     * @throws ParseException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkExpiryTime", targetNamespace = "http://example/", className = "example.CheckExpiryTime")
-    @ResponseWrapper(localName = "checkExpiryTimeResponse", targetNamespace = "http://example/", className = "example.CheckExpiryTimeResponse")
-    @Action(input = "http://example/HistoryGojek/checkExpiryTimeRequest", output = "http://example/HistoryGojek/checkExpiryTimeResponse")
-    public boolean checkExpiryTime(
+    @RequestWrapper(localName = "expiryTime", targetNamespace = "http://example/", className = "example.ExpiryTime")
+    @ResponseWrapper(localName = "expiryTimeResponse", targetNamespace = "http://example/", className = "example.ExpiryTimeResponse")
+    @Action(input = "http://example/HistoryGojek/expiryTimeRequest", output = "http://example/HistoryGojek/expiryTimeResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://example/HistoryGojek/expiryTime/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/HistoryGojek/expiryTime/Fault/ParseException")
+    })
+    public int expiryTime(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0)
+        throws IOException_Exception, ParseException_Exception
+    ;
 
     /**
      * 
      * @param arg0
      * @return
      *     returns java.util.List<example.UserDriverHistory>
-     * @throws ParseException_Exception
      * @throws ClassNotFoundException_Exception
      * @throws IllegalAccessException_Exception
      * @throws InstantiationException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -69,36 +76,56 @@ public interface HistoryGojek {
 
     /**
      * 
+     * @param arg1
      * @param arg0
+     * @return
+     *     returns boolean
      * @throws IllegalAccessException_Exception
+     * @throws ParseException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
-    @RequestWrapper(localName = "hideDriver", targetNamespace = "http://example/", className = "example.HideDriver")
-    @ResponseWrapper(localName = "hideDriverResponse", targetNamespace = "http://example/", className = "example.HideDriverResponse")
-    @Action(input = "http://example/HistoryGojek/hideDriverRequest", output = "http://example/HistoryGojek/hideDriverResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hideDriver/Fault/IllegalAccessException")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "hidePassanger", targetNamespace = "http://example/", className = "example.HidePassanger")
+    @ResponseWrapper(localName = "hidePassangerResponse", targetNamespace = "http://example/", className = "example.HidePassangerResponse")
+    @Action(input = "http://example/HistoryGojek/hidePassangerRequest", output = "http://example/HistoryGojek/hidePassangerResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hidePassanger/Fault/IllegalAccessException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://example/HistoryGojek/hidePassanger/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/HistoryGojek/hidePassanger/Fault/ParseException")
     })
-    public void hideDriver(
+    public boolean hidePassanger(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
-        throws IllegalAccessException_Exception
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1)
+        throws IOException_Exception, IllegalAccessException_Exception, ParseException_Exception
     ;
 
     /**
      * 
+     * @param arg1
      * @param arg0
+     * @return
+     *     returns boolean
      * @throws IllegalAccessException_Exception
+     * @throws IOException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
-    @RequestWrapper(localName = "hidePassanger", targetNamespace = "http://example/", className = "example.HidePassanger")
-    @ResponseWrapper(localName = "hidePassangerResponse", targetNamespace = "http://example/", className = "example.HidePassangerResponse")
-    @Action(input = "http://example/HistoryGojek/hidePassangerRequest", output = "http://example/HistoryGojek/hidePassangerResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hidePassanger/Fault/IllegalAccessException")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "hideDriver", targetNamespace = "http://example/", className = "example.HideDriver")
+    @ResponseWrapper(localName = "hideDriverResponse", targetNamespace = "http://example/", className = "example.HideDriverResponse")
+    @Action(input = "http://example/HistoryGojek/hideDriverRequest", output = "http://example/HistoryGojek/hideDriverResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hideDriver/Fault/IllegalAccessException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://example/HistoryGojek/hideDriver/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/HistoryGojek/hideDriver/Fault/ParseException")
     })
-    public void hidePassanger(
+    public boolean hideDriver(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
-        throws IllegalAccessException_Exception
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1)
+        throws IOException_Exception, IllegalAccessException_Exception, ParseException_Exception
     ;
 
     /**
@@ -106,10 +133,10 @@ public interface HistoryGojek {
      * @param arg0
      * @return
      *     returns java.util.List<example.UserDriverHistory>
-     * @throws ParseException_Exception
      * @throws ClassNotFoundException_Exception
      * @throws IllegalAccessException_Exception
      * @throws InstantiationException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

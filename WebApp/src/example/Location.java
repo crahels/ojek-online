@@ -30,55 +30,22 @@ public interface Location {
      * 
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns int
+     * @throws IOException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkExpiryTime", targetNamespace = "http://example/", className = "example.CheckExpiryTime")
-    @ResponseWrapper(localName = "checkExpiryTimeResponse", targetNamespace = "http://example/", className = "example.CheckExpiryTimeResponse")
-    @Action(input = "http://example/Location/checkExpiryTimeRequest", output = "http://example/Location/checkExpiryTimeResponse")
-    public boolean checkExpiryTime(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @throws IllegalAccessException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "addLocation", targetNamespace = "http://example/", className = "example.AddLocation")
-    @ResponseWrapper(localName = "addLocationResponse", targetNamespace = "http://example/", className = "example.AddLocationResponse")
-    @Action(input = "http://example/Location/addLocationRequest", output = "http://example/Location/addLocationResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/addLocation/Fault/IllegalAccessException")
+    @RequestWrapper(localName = "expiryTime", targetNamespace = "http://example/", className = "example.ExpiryTime")
+    @ResponseWrapper(localName = "expiryTimeResponse", targetNamespace = "http://example/", className = "example.ExpiryTimeResponse")
+    @Action(input = "http://example/Location/expiryTimeRequest", output = "http://example/Location/expiryTimeResponse", fault = {
+        @FaultAction(className = IOException_Exception.class, value = "http://example/Location/expiryTime/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/Location/expiryTime/Fault/ParseException")
     })
-    public void addLocation(
+    public int expiryTime(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1)
-        throws IllegalAccessException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @throws IllegalAccessException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteLocation", targetNamespace = "http://example/", className = "example.DeleteLocation")
-    @ResponseWrapper(localName = "deleteLocationResponse", targetNamespace = "http://example/", className = "example.DeleteLocationResponse")
-    @Action(input = "http://example/Location/deleteLocationRequest", output = "http://example/Location/deleteLocationResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/deleteLocation/Fault/IllegalAccessException")
-    })
-    public void deleteLocation(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1)
-        throws IllegalAccessException_Exception
+        String arg0)
+        throws IOException_Exception, ParseException_Exception
     ;
 
     /**
@@ -86,22 +53,59 @@ public interface Location {
      * @param arg2
      * @param arg1
      * @param arg0
+     * @return
+     *     returns boolean
      * @throws IllegalAccessException_Exception
+     * @throws IOException_Exception
+     * @throws ParseException_Exception
      */
     @WebMethod
-    @RequestWrapper(localName = "saveLocation", targetNamespace = "http://example/", className = "example.SaveLocation")
-    @ResponseWrapper(localName = "saveLocationResponse", targetNamespace = "http://example/", className = "example.SaveLocationResponse")
-    @Action(input = "http://example/Location/saveLocationRequest", output = "http://example/Location/saveLocationResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/saveLocation/Fault/IllegalAccessException")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addLocation", targetNamespace = "http://example/", className = "example.AddLocation")
+    @ResponseWrapper(localName = "addLocationResponse", targetNamespace = "http://example/", className = "example.AddLocationResponse")
+    @Action(input = "http://example/Location/addLocationRequest", output = "http://example/Location/addLocationResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/addLocation/Fault/IllegalAccessException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://example/Location/addLocation/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/Location/addLocation/Fault/ParseException")
     })
-    public void saveLocation(
+    public boolean addLocation(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
+        String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
+        int arg1,
         @WebParam(name = "arg2", targetNamespace = "")
         String arg2)
-        throws IllegalAccessException_Exception
+        throws IOException_Exception, IllegalAccessException_Exception, ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws IllegalAccessException_Exception
+     * @throws ParseException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "deleteLocation", targetNamespace = "http://example/", className = "example.DeleteLocation")
+    @ResponseWrapper(localName = "deleteLocationResponse", targetNamespace = "http://example/", className = "example.DeleteLocationResponse")
+    @Action(input = "http://example/Location/deleteLocationRequest", output = "http://example/Location/deleteLocationResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/deleteLocation/Fault/IllegalAccessException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://example/Location/deleteLocation/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/Location/deleteLocation/Fault/ParseException")
+    })
+    public boolean deleteLocation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2)
+        throws IOException_Exception, IllegalAccessException_Exception, ParseException_Exception
     ;
 
     /**
@@ -118,5 +122,38 @@ public interface Location {
     public List<String> getUserLocation(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     * @throws ParseException_Exception
+     * @throws IOException_Exception
+     * @throws IllegalAccessException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "saveLocation", targetNamespace = "http://example/", className = "example.SaveLocation")
+    @ResponseWrapper(localName = "saveLocationResponse", targetNamespace = "http://example/", className = "example.SaveLocationResponse")
+    @Action(input = "http://example/Location/saveLocationRequest", output = "http://example/Location/saveLocationResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/Location/saveLocation/Fault/IllegalAccessException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://example/Location/saveLocation/Fault/IOException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/Location/saveLocation/Fault/ParseException")
+    })
+    public boolean saveLocation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3)
+        throws IOException_Exception, IllegalAccessException_Exception, ParseException_Exception
+    ;
 
 }

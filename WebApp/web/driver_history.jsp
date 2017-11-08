@@ -16,6 +16,7 @@
     java.util.List<UserDriverHistory> passengerList = null;
     HttpSession sesi = request.getSession();
     if (sesi.getAttribute("token") != null) {
+        String token = sesi.getAttribute("token").toString();
         userId = Integer.parseInt(sesi.getAttribute("userId").toString());
 
         HistoryGojekService service = new HistoryGojekService();
@@ -24,8 +25,10 @@
         try {
             passengerList = port.getDriverHistory(userId);
             if (request.getParameter("hide") != null) {
-                port.hidePassanger(Integer.parseInt(request.getParameter("hide")));
-                response.sendRedirect("driver_history.jsp");
+                boolean result = port.hidePassanger(token, Integer.parseInt(request.getParameter("hide")));
+                if (result) {
+                    response.sendRedirect("driver_history.jsp");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

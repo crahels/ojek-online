@@ -21,12 +21,15 @@
     java.util.List<UserDriverHistory> driverList = null;
 
     if (sesi.getAttribute("token") != null) {
+        String token = sesi.getAttribute("token").toString();
         try {
             userId = Integer.parseInt(sesi.getAttribute("userId").toString());
             driverList = port.getPassengerHistory(userId);
             if (request.getParameter("hide") != null) {
-                port.hideDriver(Integer.parseInt(request.getParameter("hide")));
-                response.sendRedirect("my_previous_order.jsp");
+                boolean result = port.hideDriver(token, Integer.parseInt(request.getParameter("hide")));
+                if (result) {
+                    response.sendRedirect("my_previous_order.jsp");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

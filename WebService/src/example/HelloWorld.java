@@ -76,5 +76,8 @@ public class HelloWorld {
         implementor = new HistoryGojek();
         address = "http://localhost:8002/HistoryGojek";
         Endpoint.publish(address, implementor);
+        implementor = new Profile();
+        address = "http://localhost:8002/Profile";
+        Endpoint.publish(address, implementor);
     }
 }

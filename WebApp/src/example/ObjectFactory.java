@@ -24,10 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ExpiryTimeResponse_QNAME = new QName("http://example/", "expiryTimeResponse");
-    private final static QName _ExpiryTime_QNAME = new QName("http://example/", "expiryTime");
-    private final static QName _IOException_QNAME = new QName("http://example/", "IOException");
+    private final static QName _GetDriverByID_QNAME = new QName("http://example/", "getDriverByID");
+    private final static QName _GetDataUser_QNAME = new QName("http://example/", "getDataUser");
+    private final static QName _GetDriverByIDResponse_QNAME = new QName("http://example/", "getDriverByIDResponse");
+    private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
     private final static QName _ParseException_QNAME = new QName("http://example/", "ParseException");
+    private final static QName _GetDataUserResponse_QNAME = new QName("http://example/", "getDataUserResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: example
@@ -37,19 +39,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExpiryTime }
+     * Create an instance of {@link GetDriverByIDResponse }
      * 
      */
-    public ExpiryTime createExpiryTime() {
-        return new ExpiryTime();
+    public GetDriverByIDResponse createGetDriverByIDResponse() {
+        return new GetDriverByIDResponse();
     }
 
     /**
-     * Create an instance of {@link IOException }
+     * Create an instance of {@link GetDriverByID }
      * 
      */
-    public IOException createIOException() {
-        return new IOException();
+    public GetDriverByID createGetDriverByID() {
+        return new GetDriverByID();
+    }
+
+    /**
+     * Create an instance of {@link GetDataUser }
+     * 
+     */
+    public GetDataUser createGetDataUser() {
+        return new GetDataUser();
     }
 
     /**
@@ -61,38 +71,71 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExpiryTimeResponse }
+     * Create an instance of {@link GetDataUserResponse }
      * 
      */
-    public ExpiryTimeResponse createExpiryTimeResponse() {
-        return new ExpiryTimeResponse();
+    public GetDataUserResponse createGetDataUserResponse() {
+        return new GetDataUserResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryTimeResponse }{@code >}}
+     * Create an instance of {@link IllegalAccessException }
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "expiryTimeResponse")
-    public JAXBElement<ExpiryTimeResponse> createExpiryTimeResponse(ExpiryTimeResponse value) {
-        return new JAXBElement<ExpiryTimeResponse>(_ExpiryTimeResponse_QNAME, ExpiryTimeResponse.class, null, value);
+    public IllegalAccessException createIllegalAccessException() {
+        return new IllegalAccessException();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryTime }{@code >}}
+     * Create an instance of {@link Driver }
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "expiryTime")
-    public JAXBElement<ExpiryTime> createExpiryTime(ExpiryTime value) {
-        return new JAXBElement<ExpiryTime>(_ExpiryTime_QNAME, ExpiryTime.class, null, value);
+    public Driver createDriver() {
+        return new Driver();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}}
+     * Create an instance of {@link User }
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "IOException")
-    public JAXBElement<IOException> createIOException(IOException value) {
-        return new JAXBElement<IOException>(_IOException_QNAME, IOException.class, null, value);
+    public User createUser() {
+        return new User();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDriverByID }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getDriverByID")
+    public JAXBElement<GetDriverByID> createGetDriverByID(GetDriverByID value) {
+        return new JAXBElement<GetDriverByID>(_GetDriverByID_QNAME, GetDriverByID.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDataUser }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getDataUser")
+    public JAXBElement<GetDataUser> createGetDataUser(GetDataUser value) {
+        return new JAXBElement<GetDataUser>(_GetDataUser_QNAME, GetDataUser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDriverByIDResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getDriverByIDResponse")
+    public JAXBElement<GetDriverByIDResponse> createGetDriverByIDResponse(GetDriverByIDResponse value) {
+        return new JAXBElement<GetDriverByIDResponse>(_GetDriverByIDResponse_QNAME, GetDriverByIDResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IllegalAccessException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "IllegalAccessException")
+    public JAXBElement<IllegalAccessException> createIllegalAccessException(IllegalAccessException value) {
+        return new JAXBElement<IllegalAccessException>(_IllegalAccessException_QNAME, IllegalAccessException.class, null, value);
     }
 
     /**
@@ -102,6 +145,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://example/", name = "ParseException")
     public JAXBElement<ParseException> createParseException(ParseException value) {
         return new JAXBElement<ParseException>(_ParseException_QNAME, ParseException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDataUserResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "getDataUserResponse")
+    public JAXBElement<GetDataUserResponse> createGetDataUserResponse(GetDataUserResponse value) {
+        return new JAXBElement<GetDataUserResponse>(_GetDataUserResponse_QNAME, GetDataUserResponse.class, null, value);
     }
 
 }

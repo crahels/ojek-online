@@ -97,8 +97,7 @@
         <input class="button-add-location" type="submit" name="submit" value="ADD">
     </form>
     <div>
-        <%-- profile.jsp --%>
-        <a href="#"><input class="button-back left" type="button" value="BACK"></a>
+        <a href="profile.jsp"><input class="button-back left" type="button" value="BACK"></a>
     </div>
 </div>
 </body>

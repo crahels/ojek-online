@@ -43,4 +43,12 @@
         <servlet-name>HistoryServlet</servlet-name>
         <url-pattern>/historyServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Profile</servlet-name>
+        <servlet-class>ProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Profile</servlet-name>
+        <url-pattern>/profileServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

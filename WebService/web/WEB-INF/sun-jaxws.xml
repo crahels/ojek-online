@@ -18,4 +18,8 @@
         name='HistoryGojek'
         implementation='example.HistoryGojek'
         url-pattern='/services/HistoryGojek'/>
+    <endpoint
+            name='Profile'
+            implementation='example.Profile'
+            url-pattern='/services/Profile'/>
 </endpoints>

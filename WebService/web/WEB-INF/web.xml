@@ -25,4 +25,8 @@
         <servlet-name>WSServlet</servlet-name>
         <url-pattern>/services/HistoryGojek</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WSServlet</servlet-name>
+        <url-pattern>/services/Profile</url-pattern>
+    </servlet-mapping>
 </web-app>

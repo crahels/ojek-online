@@ -9,6 +9,7 @@
 <%@ page import="example.ParseException_Exception" %>
 <%@ page import="example.HelloWorldService" %>
 <%@ page import="example.HelloWorld" %>
+<%@ page import="static java.awt.SystemColor.window" %>
 <%--
   Created by IntelliJ IDEA.
   User: MARCELLINO
@@ -25,11 +26,13 @@
     HelloWorld prt = servis.getHelloWorldPort();
     try {
         if (prt.expiryTime(tokenn) == 0) { // invalid
-            out.print("<script>alert('INVALID')</script>");
-            response.sendRedirect("login.jsp");
+            out.print("<script>alert('INVALID ACCESS');" +
+                    "window.location = 'login.jsp';</script>");
+            //response.sendRedirect("login.jsp");
         } else if (prt.expiryTime(tokenn) == 2) { // expired
-            out.print("<script>alert('EXPIRED')</script>");
-            response.sendRedirect("login.jsp");
+            out.print("<script>alert('EXPIRED ACCESS');" +
+                    "window.location = 'login.jsp';</script>");
+            //response.sendRedirect("login.jsp");
         }
     } catch (IOException_Exception e) {
         e.printStackTrace();

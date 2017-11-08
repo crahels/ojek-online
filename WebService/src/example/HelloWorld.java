@@ -18,5 +18,8 @@ public class HelloWorld {
         implementor = new OrderGojek();
         address = "http://localhost:8002/OrderGojek";
         Endpoint.publish(address, implementor);
+        implementor = new Location();
+        address = "http://localhost:8002/Location";
+        Endpoint.publish(address, implementor);
     }
 }

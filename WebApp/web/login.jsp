@@ -79,7 +79,7 @@
                 if (sesi.getAttribute("status") == "0") {
                     nextPage = "profile.jsp";
                 } else {
-                    nextPage = "order.jsp";
+                    nextPage = "order_gojek.jsp";
                 }
                 response.sendRedirect(nextPage);
             }
@@ -101,8 +101,8 @@
     <meta charset="UTF-8">
     <title>Login - PR-OJEK</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -127,6 +127,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="../assets/js/login_validation.js"></script>
+<script type="text/javascript" src="js/login_validation.js"></script>
 </body>
 </html>

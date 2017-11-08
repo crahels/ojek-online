@@ -79,7 +79,7 @@
                 if (sesi.getAttribute("status") == "0") {
                     nextPage = "profile.jsp";
                 } else {
-                    nextPage = "order.jsp";
+                    nextPage = "order_gojek.jsp";
                 }
                 response.sendRedirect(nextPage);
             }

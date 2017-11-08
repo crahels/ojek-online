@@ -25,13 +25,16 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _CheckExpiryTimeResponse_QNAME = new QName("http://example/", "checkExpiryTimeResponse");
+    private final static QName _DeleteLocation_QNAME = new QName("http://example/", "deleteLocation");
     private final static QName _CheckExpiryTime_QNAME = new QName("http://example/", "checkExpiryTime");
+    private final static QName _DeleteLocationResponse_QNAME = new QName("http://example/", "deleteLocationResponse");
+    private final static QName _SaveLocationResponse_QNAME = new QName("http://example/", "saveLocationResponse");
     private final static QName _IllegalAccessException_QNAME = new QName("http://example/", "IllegalAccessException");
-    private final static QName _AddOrderToDatabaseResponse_QNAME = new QName("http://example/", "addOrderToDatabaseResponse");
-    private final static QName _GetPreferredDriversResponse_QNAME = new QName("http://example/", "getPreferredDriversResponse");
-    private final static QName _AddOrderToDatabase_QNAME = new QName("http://example/", "addOrderToDatabase");
-    private final static QName _GetPreferredDrivers_QNAME = new QName("http://example/", "getPreferredDrivers");
-    private final static QName _ParseException_QNAME = new QName("http://example/", "ParseException");
+    private final static QName _GetUserLocationResponse_QNAME = new QName("http://example/", "getUserLocationResponse");
+    private final static QName _AddLocationResponse_QNAME = new QName("http://example/", "addLocationResponse");
+    private final static QName _GetUserLocation_QNAME = new QName("http://example/", "getUserLocation");
+    private final static QName _SaveLocation_QNAME = new QName("http://example/", "saveLocation");
+    private final static QName _AddLocation_QNAME = new QName("http://example/", "addLocation");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: example
@@ -49,6 +52,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteLocation }
+     * 
+     */
+    public DeleteLocation createDeleteLocation() {
+        return new DeleteLocation();
+    }
+
+    /**
      * Create an instance of {@link CheckExpiryTime }
      * 
      */
@@ -57,27 +68,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddOrderToDatabase }
+     * Create an instance of {@link AddLocationResponse }
      * 
      */
-    public AddOrderToDatabase createAddOrderToDatabase() {
-        return new AddOrderToDatabase();
+    public AddLocationResponse createAddLocationResponse() {
+        return new AddLocationResponse();
     }
 
     /**
-     * Create an instance of {@link GetPreferredDrivers }
+     * Create an instance of {@link GetUserLocation }
      * 
      */
-    public GetPreferredDrivers createGetPreferredDrivers() {
-        return new GetPreferredDrivers();
+    public GetUserLocation createGetUserLocation() {
+        return new GetUserLocation();
     }
 
     /**
-     * Create an instance of {@link ParseException }
+     * Create an instance of {@link SaveLocation }
      * 
      */
-    public ParseException createParseException() {
-        return new ParseException();
+    public SaveLocation createSaveLocation() {
+        return new SaveLocation();
+    }
+
+    /**
+     * Create an instance of {@link AddLocation }
+     * 
+     */
+    public AddLocation createAddLocation() {
+        return new AddLocation();
+    }
+
+    /**
+     * Create an instance of {@link DeleteLocationResponse }
+     * 
+     */
+    public DeleteLocationResponse createDeleteLocationResponse() {
+        return new DeleteLocationResponse();
+    }
+
+    /**
+     * Create an instance of {@link SaveLocationResponse }
+     * 
+     */
+    public SaveLocationResponse createSaveLocationResponse() {
+        return new SaveLocationResponse();
     }
 
     /**
@@ -89,27 +124,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddOrderToDatabaseResponse }
+     * Create an instance of {@link GetUserLocationResponse }
      * 
      */
-    public AddOrderToDatabaseResponse createAddOrderToDatabaseResponse() {
-        return new AddOrderToDatabaseResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetPreferredDriversResponse }
-     * 
-     */
-    public GetPreferredDriversResponse createGetPreferredDriversResponse() {
-        return new GetPreferredDriversResponse();
-    }
-
-    /**
-     * Create an instance of {@link Driver }
-     * 
-     */
-    public Driver createDriver() {
-        return new Driver();
+    public GetUserLocationResponse createGetUserLocationResponse() {
+        return new GetUserLocationResponse();
     }
 
     /**
@@ -122,12 +141,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteLocation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "deleteLocation")
+    public JAXBElement<DeleteLocation> createDeleteLocation(DeleteLocation value) {
+        return new JAXBElement<DeleteLocation>(_DeleteLocation_QNAME, DeleteLocation.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CheckExpiryTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://example/", name = "checkExpiryTime")
     public JAXBElement<CheckExpiryTime> createCheckExpiryTime(CheckExpiryTime value) {
         return new JAXBElement<CheckExpiryTime>(_CheckExpiryTime_QNAME, CheckExpiryTime.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteLocationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "deleteLocationResponse")
+    public JAXBElement<DeleteLocationResponse> createDeleteLocationResponse(DeleteLocationResponse value) {
+        return new JAXBElement<DeleteLocationResponse>(_DeleteLocationResponse_QNAME, DeleteLocationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveLocationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://example/", name = "saveLocationResponse")
+    public JAXBElement<SaveLocationResponse> createSaveLocationResponse(SaveLocationResponse value) {
+        return new JAXBElement<SaveLocationResponse>(_SaveLocationResponse_QNAME, SaveLocationResponse.class, null, value);
     }
 
     /**
@@ -140,48 +186,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabaseResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserLocationResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabaseResponse")
-    public JAXBElement<AddOrderToDatabaseResponse> createAddOrderToDatabaseResponse(AddOrderToDatabaseResponse value) {
-        return new JAXBElement<AddOrderToDatabaseResponse>(_AddOrderToDatabaseResponse_QNAME, AddOrderToDatabaseResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "getUserLocationResponse")
+    public JAXBElement<GetUserLocationResponse> createGetUserLocationResponse(GetUserLocationResponse value) {
+        return new JAXBElement<GetUserLocationResponse>(_GetUserLocationResponse_QNAME, GetUserLocationResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDriversResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddLocationResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "getPreferredDriversResponse")
-    public JAXBElement<GetPreferredDriversResponse> createGetPreferredDriversResponse(GetPreferredDriversResponse value) {
-        return new JAXBElement<GetPreferredDriversResponse>(_GetPreferredDriversResponse_QNAME, GetPreferredDriversResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "addLocationResponse")
+    public JAXBElement<AddLocationResponse> createAddLocationResponse(AddLocationResponse value) {
+        return new JAXBElement<AddLocationResponse>(_AddLocationResponse_QNAME, AddLocationResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddOrderToDatabase }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserLocation }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "addOrderToDatabase")
-    public JAXBElement<AddOrderToDatabase> createAddOrderToDatabase(AddOrderToDatabase value) {
-        return new JAXBElement<AddOrderToDatabase>(_AddOrderToDatabase_QNAME, AddOrderToDatabase.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "getUserLocation")
+    public JAXBElement<GetUserLocation> createGetUserLocation(GetUserLocation value) {
+        return new JAXBElement<GetUserLocation>(_GetUserLocation_QNAME, GetUserLocation.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPreferredDrivers }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveLocation }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "getPreferredDrivers")
-    public JAXBElement<GetPreferredDrivers> createGetPreferredDrivers(GetPreferredDrivers value) {
-        return new JAXBElement<GetPreferredDrivers>(_GetPreferredDrivers_QNAME, GetPreferredDrivers.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "saveLocation")
+    public JAXBElement<SaveLocation> createSaveLocation(SaveLocation value) {
+        return new JAXBElement<SaveLocation>(_SaveLocation_QNAME, SaveLocation.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ParseException }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddLocation }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://example/", name = "ParseException")
-    public JAXBElement<ParseException> createParseException(ParseException value) {
-        return new JAXBElement<ParseException>(_ParseException_QNAME, ParseException.class, null, value);
+    @XmlElementDecl(namespace = "http://example/", name = "addLocation")
+    public JAXBElement<AddLocation> createAddLocation(AddLocation value) {
+        return new JAXBElement<AddLocation>(_AddLocation_QNAME, AddLocation.class, null, value);
     }
 
 }

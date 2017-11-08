@@ -29,71 +29,11 @@ public interface HistoryGojek {
     /**
      * 
      * @param arg0
-     * @throws IllegalAccessException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "hideDriver", targetNamespace = "http://example/", className = "example.HideDriver")
-    @ResponseWrapper(localName = "hideDriverResponse", targetNamespace = "http://example/", className = "example.HideDriverResponse")
-    @Action(input = "http://example/HistoryGojek/hideDriverRequest", output = "http://example/HistoryGojek/hideDriverResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hideDriver/Fault/IllegalAccessException")
-    })
-    public void hideDriver(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
-        throws IllegalAccessException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws IllegalAccessException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "hidePassanger", targetNamespace = "http://example/", className = "example.HidePassanger")
-    @ResponseWrapper(localName = "hidePassangerResponse", targetNamespace = "http://example/", className = "example.HidePassangerResponse")
-    @Action(input = "http://example/HistoryGojek/hidePassangerRequest", output = "http://example/HistoryGojek/hidePassangerResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hidePassanger/Fault/IllegalAccessException")
-    })
-    public void hidePassanger(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
-        throws IllegalAccessException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns java.util.List<example.UserDriverHistory>
+     * @throws IllegalAccessException_Exception
      * @throws ParseException_Exception
      * @throws InstantiationException_Exception
-     * @throws IllegalAccessException_Exception
-     * @throws ClassNotFoundException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getDriverHistory", targetNamespace = "http://example/", className = "example.GetDriverHistory")
-    @ResponseWrapper(localName = "getDriverHistoryResponse", targetNamespace = "http://example/", className = "example.GetDriverHistoryResponse")
-    @Action(input = "http://example/HistoryGojek/getDriverHistoryRequest", output = "http://example/HistoryGojek/getDriverHistoryResponse", fault = {
-        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/IllegalAccessException"),
-        @FaultAction(className = ParseException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/ParseException"),
-        @FaultAction(className = ClassNotFoundException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/ClassNotFoundException"),
-        @FaultAction(className = InstantiationException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/InstantiationException")
-    })
-    public List<UserDriverHistory> getDriverHistory(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
-        throws ClassNotFoundException_Exception, IllegalAccessException_Exception, InstantiationException_Exception, ParseException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<example.UserDriverHistory>
-     * @throws InstantiationException_Exception
-     * @throws ParseException_Exception
-     * @throws IllegalAccessException_Exception
      * @throws ClassNotFoundException_Exception
      */
     @WebMethod
@@ -126,5 +66,65 @@ public interface HistoryGojek {
     public boolean checkExpiryTime(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<example.UserDriverHistory>
+     * @throws IllegalAccessException_Exception
+     * @throws ParseException_Exception
+     * @throws InstantiationException_Exception
+     * @throws ClassNotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getDriverHistory", targetNamespace = "http://example/", className = "example.GetDriverHistory")
+    @ResponseWrapper(localName = "getDriverHistoryResponse", targetNamespace = "http://example/", className = "example.GetDriverHistoryResponse")
+    @Action(input = "http://example/HistoryGojek/getDriverHistoryRequest", output = "http://example/HistoryGojek/getDriverHistoryResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/IllegalAccessException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/ParseException"),
+        @FaultAction(className = ClassNotFoundException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/ClassNotFoundException"),
+        @FaultAction(className = InstantiationException_Exception.class, value = "http://example/HistoryGojek/getDriverHistory/Fault/InstantiationException")
+    })
+    public List<UserDriverHistory> getDriverHistory(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws ClassNotFoundException_Exception, IllegalAccessException_Exception, InstantiationException_Exception, ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws IllegalAccessException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "hidePassanger", targetNamespace = "http://example/", className = "example.HidePassanger")
+    @ResponseWrapper(localName = "hidePassangerResponse", targetNamespace = "http://example/", className = "example.HidePassangerResponse")
+    @Action(input = "http://example/HistoryGojek/hidePassangerRequest", output = "http://example/HistoryGojek/hidePassangerResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hidePassanger/Fault/IllegalAccessException")
+    })
+    public void hidePassanger(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws IllegalAccessException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws IllegalAccessException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "hideDriver", targetNamespace = "http://example/", className = "example.HideDriver")
+    @ResponseWrapper(localName = "hideDriverResponse", targetNamespace = "http://example/", className = "example.HideDriverResponse")
+    @Action(input = "http://example/HistoryGojek/hideDriverRequest", output = "http://example/HistoryGojek/hideDriverResponse", fault = {
+        @FaultAction(className = IllegalAccessException_Exception.class, value = "http://example/HistoryGojek/hideDriver/Fault/IllegalAccessException")
+    })
+    public void hideDriver(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws IllegalAccessException_Exception
+    ;
 
 }

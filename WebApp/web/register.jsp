@@ -17,8 +17,7 @@
 
 <%
     HttpSession sesi = request.getSession();
-%>
-<%
+
     // HTTP POST request
     String fullname;
     String username;
@@ -85,7 +84,7 @@
                     String token  = (String) obj.get("token");
                     sesi = request.getSession();
                     sesi.setAttribute("username", username);
-                    sesi.setAttribute("userid", id);
+                    sesi.setAttribute("userId", id);
                     sesi.setAttribute("token", token);
                     sesi.setAttribute("email", email);
                     sesi.setAttribute("status", isDriver);
@@ -95,22 +94,22 @@
                     if (sesi.getAttribute("status") == "0") {
                         nextPage = "profile.jsp";
                     } else {
-                        nextPage = "order.jsp";
+                        nextPage = "order_gojek.jsp";
                     }
                     response.sendRedirect(nextPage);
                 }
                 else {
                     errorMessage= "Failed to insert data, server may be busy, please try again later";
-                    out.println(errorMessage);
+                    out.println("<script>alert('" + errorMessage + "')</script>");
                 }
             }
             else {
                 errorMessage= "Failed to insert data, server may be busy, please try again later";
-                out.println(errorMessage);
+                out.println("<script>alert('" + errorMessage + "')</script>");
             }
         } else {
             errorMessage= "USERNAME NOT VALID";
-            out.println(errorMessage);
+            out.println("<script>alert('" + errorMessage + "')</script>");
         }
     }
 %>

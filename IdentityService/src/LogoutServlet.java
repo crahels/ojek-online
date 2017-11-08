@@ -30,7 +30,7 @@ public class LogoutServlet extends HttpServlet {
             int i = st.executeUpdate("DELETE FROM user WHERE  user_token = '" + token + "';");
             if (i>0){
                 arrayObj.put("status","ok");
-
+                arrayObj.put("dika", token);
             }
             else {
                 arrayObj.put("status","error");

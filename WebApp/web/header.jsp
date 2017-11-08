@@ -1,3 +1,10 @@
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
+<%@ page import="java.io.DataOutputStream" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStreamReader" %>
+<%@page import="org.json.simple.parser.JSONParser"%>
+<%@page import="org.json.simple.JSONObject"%>
 <%--
   Created by IntelliJ IDEA.
   User: MARCELLINO
@@ -6,6 +13,63 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    HttpSession sesion = request.getSession();
+    String tokenn = sesion.getAttribute("token").toString();
+    String usernamee = sesion.getAttribute("username").toString();
+    sesion.setAttribute("token",tokenn);
+    if (tokenn == null) {
+        response.sendRedirect("login.jsp");
+    }
+    if(request.getParameter("logout") != null) {
+        String USER_AGENT = "Mozilla/5.0";
+        String url = "http://localhost:8003/logout";
+        URL connection = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) connection.openConnection();
+
+        //add reuqest header
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+        String urlParameters = "token="+tokenn;
+
+        // Send post request
+        con.setDoOutput(true);
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        wr.writeBytes(urlParameters);
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder resp = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            resp.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+        JSONParser parser = new JSONParser();
+        JSONObject obj = (JSONObject) parser.parse(resp.toString());
+        String status= (String) obj.get("status");
+        String dikaanjing = (String) obj.get("dika");
+        if(dikaanjing != null) {
+            out.println(dikaanjing);
+        }
+
+        if(status.equals("ok")){
+            response.sendRedirect("login.jsp");
+        }
+        else {
+            out.println(status);
+            out.println("<script>alert('Logout Failed')</script>");
+            response.sendRedirect("login.jsp");
+        }
+    }
+%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -20,7 +84,7 @@
                 </td>
 
                 <td>
-                    <p class="hi-username">Hi, <span class="bold"></span> !</p>
+                    <p class="hi-username">Hi, <span class="bold"><% out.print(usernamee); %></span> !</p>
                 </td>
             </tr>
             <tr>
@@ -28,7 +92,7 @@
                     <p class="subtitle left">wushh... wushh... ngeeeeeenggg...</p>
                 </td>
                 <td>
-                    <a class="logout right" href="index.jsp">Logout</a>
+                    <a class="logout right" href="header.jsp?logout=1">Logout</a>
                 </td>
             </tr>
         </table>
@@ -38,20 +102,18 @@
                     out.print("class='active'");
                 }
                 %>
-                    href="#">Order</a></li>
+                    href="order_gojek.jsp">Order</a></li>
             <li>
                 <a <% if (application.getAttribute("currentPage") == "history") {
                     out.print("class='active'");
                 }%>
-                    href="#">History</a></li>
+                    href="my_previous_order.jsp">History</a></li>
             <li>
                 <a <% if (application.getAttribute("currentPage") == "profile") {
                     out.print("class='active'");
                 }%>
-                    href="#">My Profile</a></li>
+                    href="profile.jsp">My Profile</a></li>
         </ul>
     </div>
 </body>
 </html>
-
-

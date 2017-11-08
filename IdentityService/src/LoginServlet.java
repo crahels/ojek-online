@@ -38,6 +38,9 @@ public class LoginServlet extends HttpServlet {
                     String status = rs.getString("user_status");
                     String email = rs.getString("user_email");
 
+                    Statement a = Con.createStatement();
+                    String checkQuery = "DELETE FROM user WHERE  user_id = '" + id + "';";
+                    int temp = a.executeUpdate(checkQuery);
                     Statement st = Con.createStatement();
                     String token = RegisterServlet.generateToken(20);
                     Calendar now = Calendar.getInstance();
@@ -58,7 +61,7 @@ public class LoginServlet extends HttpServlet {
                         System.out.println("Successfully add new user to database");
                     } else {
                         System.out.println("Failed to add token to database");
-                        arrayObj.put("user_token", "no");
+                        arrayObj.put("user_token", "yes");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

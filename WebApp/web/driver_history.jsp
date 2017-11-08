@@ -14,22 +14,22 @@
     application.setAttribute("specificPage","driver-history");
 
     HttpSession sesi = request.getSession();
-    sesi.setAttribute("token","dummy"); /* need to be replaced */
+    /*sesi.setAttribute("token","dummy"); *//* need to be replaced *//*
     String token = sesi.getAttribute("token").toString();
     if (token == null) {
         response.sendRedirect("login.jsp");
-    }
+    }*/
 
-    //int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-    int userId = 1;
+    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
+    //int userId = 1;
 
     HistoryGojekService service = new HistoryGojekService();
     HistoryGojek port = service.getHistoryGojekPort();
     java.util.List<UserDriverHistory> passengerList = null;
-
+/*
     boolean result = port.checkExpiryTime(token);
     if (!result) {
-        try {
+        try {*/
             passengerList = port.getDriverHistory(userId);
             if(request.getParameter("hide") != null) {
                 port.hidePassanger(Integer.parseInt(request.getParameter("hide")));
@@ -37,10 +37,10 @@
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }/*
     } else {
         response.sendRedirect("login.jsp");
-    }
+    }*/
 %>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
 <div class="container">
     <%@include file="history_header.jsp"%>
     <%
-        if(passengerList.size() > 0) {
+        if(passengerList != null) {
             for (UserDriverHistory x : passengerList) {
                 out.println("<table class=\"table-select-driver margin-driver-history\">" +
                         "<tr>" +

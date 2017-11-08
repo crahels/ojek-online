@@ -14,21 +14,20 @@
     application.setAttribute("specificPage","costumer-history");
 
     HttpSession sesi = request.getSession();
-    sesi.setAttribute("token","dummy"); /* need to be replaced */
+    /*sesi.setAttribute("token","dummy"); *//* need to be replaced *//*
     String token = sesi.getAttribute("token").toString();
     if (token == null) {
         response.sendRedirect("login.jsp");
-    }
+    }*/
 
-    //int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-    int userId = 1;
-
+    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
+    
     HistoryGojekService service = new HistoryGojekService();
     HistoryGojek port = service.getHistoryGojekPort();
     java.util.List<UserDriverHistory> driverList = null;
-
+/*
     boolean result = port.checkExpiryTime(token);
-    if (!result) {
+    if (!result) {*/
         try {
             driverList = port.getPassengerHistory(userId);
             if(request.getParameter("hide") != null) {
@@ -37,10 +36,10 @@
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }/*
     } else {
         response.sendRedirect("login.jsp");
-    }
+    }*/
 %>
 <!DOCTYPE html>
 <html>
@@ -58,7 +57,7 @@
 <div class="container">
     <%@include file="history_header.jsp"%>
     <%
-        if(driverList.size() > 0) {
+        if(driverList != null) {
             for (UserDriverHistory x : driverList) {
                 out.print("<table class=\"table-select-driver margin-driver-history\">" +
                         "<tr>" +

@@ -113,7 +113,7 @@ public class HistoryGojek {
                 order_id = rs.getInt("order_id");
                 try {
                     String USER_AGENT = "Mozilla/5.0";
-                    String url = "http://localhost:8001/historyServlet";
+                    String url = "http://localhost:8003/historyServlet";
                     URL connection = new URL(url);
                     HttpURLConnection conIS = (HttpURLConnection) connection.openConnection();
 
@@ -198,7 +198,7 @@ public class HistoryGojek {
                 order_id = rs.getInt("order_id");
                 try {
                     String USER_AGENT = "Mozilla/5.0";
-                    String url = "http://localhost:8001/historyServlet";
+                    String url = "http://localhost:8003/historyServlet";
                     URL connection = new URL(url);
                     HttpURLConnection conIS = (HttpURLConnection) connection.openConnection();
 

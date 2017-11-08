@@ -24,7 +24,7 @@
         usernamee = sesion.getAttribute("username").toString();
         if(request.getParameter("logout") != null) {
             String USER_AGENT = "Mozilla/5.0";
-            String url = "http://localhost:8001/logout";
+            String url = "http://localhost:8003/logout";
             URL connection = new URL(url);
             HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 

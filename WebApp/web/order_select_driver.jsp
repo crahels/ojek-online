@@ -15,24 +15,36 @@
     application.setAttribute("currentSubPage","driver");
 
     HttpSession sesi = request.getSession();
-    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-    String pickingPoint = sesi.getAttribute("pickingPoint").toString();
-    String destination = sesi.getAttribute("destination").toString();
-    String preferredDriver = sesi.getAttribute("preferredDriver").toString();
+    int userId;
+    String pickingPoint;
+    String destination;
+    String preferredDriver;
 
     OrderGojekService service = new OrderGojekService();
     OrderGojek port = service.getOrderGojekPort();
     java.util.List<example.Driver> driver = null;
     java.util.List<example.Driver> otherDriver = null;
-    try {
-        driver = port.getPreferredDrivers(true, userId, pickingPoint, destination, preferredDriver);
-    } catch (Exception e) {
-        e.printStackTrace();
+    if (sesi.getAttribute("token") != null) {
+        userId = Integer.parseInt(sesi.getAttribute("userId").toString());
+        pickingPoint = sesi.getAttribute("pickingPoint").toString();
+        destination = sesi.getAttribute("destination").toString();
+        preferredDriver = sesi.getAttribute("preferredDriver").toString();
+        try {
+            driver = port.getPreferredDrivers(true, userId, pickingPoint, destination, preferredDriver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            otherDriver = port.getPreferredDrivers(false, userId, pickingPoint, destination, preferredDriver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    try {
-        otherDriver = port.getPreferredDrivers(false, userId, pickingPoint, destination, preferredDriver);
-    } catch (Exception e) {
-        e.printStackTrace();
+    else {
+        userId = -1;
+        pickingPoint = "";
+        destination = "";
+        preferredDriver = "";
     }
 
 %>

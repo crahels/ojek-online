@@ -12,22 +12,27 @@
 <%
     application.setAttribute("currentPage","history");
     application.setAttribute("specificPage","driver-history");
-
-    HttpSession sesi = request.getSession();
-    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-
-    HistoryGojekService service = new HistoryGojekService();
-    HistoryGojek port = service.getHistoryGojekPort();
+    int userId;
     java.util.List<UserDriverHistory> passengerList = null;
+    HttpSession sesi = request.getSession();
+    if (sesi.getAttribute("token") != null) {
+        userId = Integer.parseInt(sesi.getAttribute("userId").toString());
 
-    try {
-        passengerList = port.getDriverHistory(userId);
-        if(request.getParameter("hide") != null) {
-            port.hidePassanger(Integer.parseInt(request.getParameter("hide")));
-            response.sendRedirect("driver_history.jsp");
+        HistoryGojekService service = new HistoryGojekService();
+        HistoryGojek port = service.getHistoryGojekPort();
+
+        try {
+            passengerList = port.getDriverHistory(userId);
+            if (request.getParameter("hide") != null) {
+                port.hidePassanger(Integer.parseInt(request.getParameter("hide")));
+                response.sendRedirect("driver_history.jsp");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+    }
+    else {
+        userId = -1;
     }
 %>
 

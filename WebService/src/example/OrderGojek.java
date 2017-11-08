@@ -114,7 +114,7 @@ public class OrderGojek {
         ArrayList<Driver> driverList = new ArrayList<>();
         try {
             String USER_AGENT = "Mozilla/5.0";
-            String url = "http://localhost:8001/orderDriverServlet";
+            String url = "http://localhost:8003/orderDriverServlet";
             URL connection = new URL(url);
             HttpURLConnection conIS = (HttpURLConnection) connection.openConnection();
 

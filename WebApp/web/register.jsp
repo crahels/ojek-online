@@ -39,7 +39,7 @@
             isDriver = "1";
         }
         String USER_AGENT = "Mozilla/5.0";
-        String url = "http://localhost:8001/register";
+        String url = "http://localhost:8003/register";
         URL connection = new URL(url);
         HttpURLConnection con = (HttpURLConnection) connection.openConnection();
 

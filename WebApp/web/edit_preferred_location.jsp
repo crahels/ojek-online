@@ -14,19 +14,12 @@
     application.setAttribute("currentSubPage","complete");
 
     HttpSession sesi = request.getSession();
-    sesi.setAttribute("token","dummy"); /* need to be replaced */
-    sesi.setAttribute("userId","0"); /* need to be replaced */
-    String token = sesi.getAttribute("token").toString();
-    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-    if (token == null) {
-        response.sendRedirect("login.jsp");
-    }
-
     LocationService service = new LocationService();
     Location port = service.getLocationPort();
+    int userId;
     java.util.List<String> locs = null;
-    boolean result = port.checkExpiryTime(token);
-    if (!result) {
+    if (sesi.getAttribute("token") != null) {
+        userId = Integer.parseInt(sesi.getAttribute("userId").toString());
         try {
             locs = port.getUserLocation(userId);
         } catch (Exception e) {
@@ -52,8 +45,9 @@
             }
             response.sendRedirect("edit_preferred_location.jsp");
         }
-    } else {
-        response.sendRedirect("login.jsp");
+    }
+    else {
+        userId = -1;
     }
 %>
 

@@ -14,32 +14,27 @@
     application.setAttribute("specificPage","costumer-history");
 
     HttpSession sesi = request.getSession();
-    /*sesi.setAttribute("token","dummy"); *//* need to be replaced *//*
-    String token = sesi.getAttribute("token").toString();
-    if (token == null) {
-        response.sendRedirect("login.jsp");
-    }*/
 
-    int userId = Integer.parseInt(sesi.getAttribute("userId").toString());
-
+    int userId;
     HistoryGojekService service = new HistoryGojekService();
     HistoryGojek port = service.getHistoryGojekPort();
     java.util.List<UserDriverHistory> driverList = null;
-/*
-    boolean result = port.checkExpiryTime(token);
-    if (!result) {*/
+
+    if (sesi.getAttribute("token") != null) {
         try {
+            userId = Integer.parseInt(sesi.getAttribute("userId").toString());
             driverList = port.getPassengerHistory(userId);
-            if(request.getParameter("hide") != null) {
+            if (request.getParameter("hide") != null) {
                 port.hideDriver(Integer.parseInt(request.getParameter("hide")));
                 response.sendRedirect("my_previous_order.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }/*
-    } else {
-        response.sendRedirect("login.jsp");
-    }*/
+        }
+    }
+    else {
+        userId = -1;
+    }
 %>
 <!DOCTYPE html>
 <html>
